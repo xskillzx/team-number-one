@@ -9,7 +9,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>Hello!</div>
+      <div>Hello! This is some squeaky clean code</div>
     );
   }
 }
