@@ -1,6 +1,4 @@
-# Project Name
-
-> A better twitter, squeaker
+# A better twitter, squeaker
 
 ## Team
 
