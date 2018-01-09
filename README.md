@@ -1,13 +1,13 @@
 # Project Name
 
-> Pithy project description
+> A better twitter, squeaker
 
 ## Team
 
-  - teamMember
-  - teamMember
-  - teamMember
-  - teamMember
+  - Moises Munoz
+  - Felipe Catania
+  - Justin Yoo
+  - Henry Chesnutt
 
 ## Table of Contents
 
