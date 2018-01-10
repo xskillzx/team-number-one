@@ -10,7 +10,8 @@
   "scripts": {
     "start": "nodemon server/index.js",
     "dev:react": "webpack -d --watch",
-    "test": ""
+    "test": "",
+    "postinstall": "webpack -p"
   },
   "dependencies": {
     "body-parser": "^1.17.2",
