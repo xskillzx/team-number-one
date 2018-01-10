@@ -11,7 +11,8 @@
     "start": "nodemon server/index.js",
     "dev:react": "webpack -d --watch",
     "test": "mocha server/spec/server-spec.js",
-    "postinstall": "webpack -p"
+    "postinstall": "webpack -p",
+    "test": "mocha server/spec/server-spec.js;"
   },
   "dependencies": {
     "babel-cli": "^6.7.5",
