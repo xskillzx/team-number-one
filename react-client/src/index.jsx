@@ -8,7 +8,19 @@ import { BrowserRouter, Switch, Route, withRouter } from 'react-router-dom';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {inputValue: ''};
+    this.state = {
+      inputValue: '',
+      squeaks: [{
+        username: 'Moisays',
+        displayName: 'MoisesM',
+        text: 'things are awesome'
+      },
+      {
+        username: 'FelIs',
+        displayName: 'Feli Catania',
+        text: 'coding is cool I guess'
+      }]
+    };
   }
 
   searchHandler() {
