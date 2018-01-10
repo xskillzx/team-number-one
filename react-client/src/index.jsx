@@ -12,8 +12,10 @@ class App extends React.Component {
   }
 
   searchHandler() {
-    this.props.history.push(`/search?q=${this.state.inputValue}`);
-    this.setState({inputValue: ''});
+    if (this.state.inputValue.length > 0) {
+      this.props.history.push(`/search?q=${this.state.inputValue}`);
+      this.setState({inputValue: ''});
+    }
   }
 
   onInputChangeHandler(e) {
