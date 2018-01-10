@@ -7,3 +7,5 @@ script:
   - npm test
 services:
   - mysql
+before_install:
+  - mysql -u root < schema.sql
