@@ -1,6 +1,7 @@
 const mysql = require('mysql');
 const mysqlConfig = require('./config.js');
 
+<<<<<<< HEAD
 var connection;
 if (process.env.JAWSDB_URL) {
   //Heroku deployment
@@ -41,5 +42,3 @@ module.exports.userInfo = userInfo;
 module.exports.searchUsers = searchUsers;
 module.exports.writePost = writePost;
 module.exports.allSqueaks = allSqueaks;
-
-// test
