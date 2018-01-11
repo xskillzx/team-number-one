@@ -12,8 +12,9 @@ class HomePage extends React.Component {
   }
 
   writePostHandler() {
-    // TODO
-    console.log('I was clicked');
+    // Create new squeak
+    // Send POST request
+    console.log(this.state.writePostValue);
   }
 
   onPostInputChangeHandler(e) {
