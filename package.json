@@ -12,7 +12,7 @@
     "dev:react": "webpack -d --watch",
     "test": "mocha server/spec/server-spec.js",
     "postinstall": "webpack -p",
-    "test": "mocha server/spec/server-spec.js;"
+    "test": "mocha server/spec/server-spec.js"
   },
   "dependencies": {
     "babel-cli": "^6.7.5",
