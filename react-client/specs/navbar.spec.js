@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import NavBar from '../src/components/NavBar.jsx';
 import { shallow } from 'enzyme';
+import NavBar from '../src/components/NavBar.jsx';
 
 describe('Test NavBar', () => {
   it('NavBar inputValue received to be set in input\'s value', () => {

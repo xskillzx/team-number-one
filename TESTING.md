@@ -30,10 +30,10 @@ Each React Component will have its own test suite. The test suite will be a new 
 ```javascript
 import React from 'react';
 import renderer from 'react-test-renderer';
-import NavBar from '../src/components/NavBar.jsx';
 import { shallow } from 'enzyme';
+import Component from '../src/components/Component.jsx';
 ```
-These lines will be required at the beginning of every test suite or spec file.
+These lines will be required at the beginning of every test suite or spec file. Component refers to the component you are actually testing in the file.
 
 **Creating a test group:**
 ```javascript
