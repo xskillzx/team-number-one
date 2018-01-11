@@ -3,6 +3,8 @@
 This document exists to help you write your unit tests.
 In this document you will find snippets of some examples and some explanation of those examples.
 
+If you want to directly jump into a code example, click [here](https://github.com/team-number-one/team-number-one/blob/master/react-client/specs/navbar.spec.js)
+
 > This document is the best thing that happened in my life!
 > --- John Travolta
 
@@ -30,10 +32,10 @@ Each React Component will have its own test suite. The test suite will be a new 
 ```javascript
 import React from 'react';
 import renderer from 'react-test-renderer';
-import NavBar from '../src/components/NavBar.jsx';
 import { shallow } from 'enzyme';
+import Component from '../src/components/Component.jsx';
 ```
-These lines will be required at the beginning of every test suite or spec file.
+These lines will be required at the beginning of every test suite or spec file. Component refers to the component you are actually testing in the file.
 
 **Creating a test group:**
 ```javascript

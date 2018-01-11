@@ -1,13 +1,17 @@
 import React from 'react';
 import SqueakEntry from './SqueakEntry.jsx';
 
-const Feed = ({squeaks}) => (
-  <div class="feed">
-    {
+const Feed = ({ squeaks, users }) => (
+  <div>
+    {squeaks &&
       squeaks.map(squeak => (
-        <SqueakEntry squeak={squeak}/>
+        <SqueakEntry key={squeak.id} squeak={squeak}/>
       ))
     }
+    {users &&
+      users.map(user => (
+        <span key={user.id} className="show-box">User Entry Comp</span>
+      ))}
   </div>
 );
 
