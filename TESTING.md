@@ -3,6 +3,8 @@
 This document exists to help you write your unit tests.
 In this document you will find snippets of some examples and some explanation of those examples.
 
+If you want to directly jump into a code example, click [here](https://github.com/team-number-one/team-number-one/blob/master/react-client/specs/navbar.spec.js)
+
 > This document is the best thing that happened in my life!
 > --- John Travolta
 

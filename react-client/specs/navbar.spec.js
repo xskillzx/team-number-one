@@ -4,18 +4,6 @@ import { shallow } from 'enzyme';
 import NavBar from '../src/components/NavBar.jsx';
 
 describe('Test NavBar', () => {
-  it('NavBar inputValue received to be set in input\'s value', () => {
-    let exampleInputValue = 'test input value';
-    let component = renderer.create(
-      <NavBar inputValue={exampleInputValue}
-        searchHandler={() => {}}
-        onChangeHandler={() => {}}/>
-    );
-  
-    let tree = component.toJSON();
-    expect(tree.children[1].props.value).toBe(exampleInputValue);
-  });
-  
   it('NavBar\'s GO button should call the passed in function', () => {
     let mockSearchHandler = jest.fn();
     const navBar = shallow((<NavBar 
@@ -23,7 +11,7 @@ describe('Test NavBar', () => {
       searchHandler={mockSearchHandler}
       onChangeHandler={() => {}}/>));
 
-    navBar.find('button').simulate('click');
+    navBar.find('Button').simulate('click');
     expect(mockSearchHandler.mock.calls.length).toEqual(1);
   });
 
@@ -34,7 +22,7 @@ describe('Test NavBar', () => {
       searchHandler={() => {}}
       onChangeHandler={mockChangeHandler}/>));
 
-    navBar.find('input').simulate('change');
+    navBar.find('FormControl').simulate('change');
     expect(mockChangeHandler.mock.calls.length).toEqual(1);
   });
 
@@ -45,7 +33,7 @@ describe('Test NavBar', () => {
       searchHandler={mockSearchHandler}
       onChangeHandler={() => {}}/>));
 
-    navBar.find('input').simulate('keyPress', {key: 'Enter'});
+    navBar.find('FormControl').simulate('keyPress', {key: 'Enter'});
     expect(mockSearchHandler.mock.calls.length).toEqual(1);
   });
 });
