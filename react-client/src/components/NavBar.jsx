@@ -2,12 +2,12 @@ import React from 'react';
 import { Navbar, FormGroup, FormControl, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-const NavBar = ({ inputValue, searchHandler, onChangeHandler }) => {
+const NavBar = ({ shouldReplace, inputValue, searchHandler, onChangeHandler }) => {
   return (
     <Navbar>
       <Navbar.Header>
         <Navbar.Brand>
-          <Link to="/">Squeaker</Link>
+          <Link to="/" replace={shouldReplace}>Squeaker</Link>
         </Navbar.Brand>
         <Navbar.Toggle />
       </Navbar.Header>
