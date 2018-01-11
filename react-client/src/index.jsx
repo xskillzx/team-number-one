@@ -38,6 +38,7 @@ class App extends React.Component {
     return (
       <div id="reactapp">
         <NavBar
+          shouldReplace={this.props.location.pathname === '/'}
           inputValue={this.state.inputValue}
           searchHandler={this.searchHandler.bind(this)}
           onChangeHandler={this.onInputChangeHandler.bind(this)}/>
