@@ -10,7 +10,6 @@ class HomePage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-<<<<<<< HEAD
       writePostValue: '',
       squeaks: []
     };
@@ -39,19 +38,6 @@ class HomePage extends React.Component {
     });
   }
 
-<<<<<<< HEAD
-=======
-      writePostValue: ''
-    };
-  }
-
-  writePostHandler() {
-    // Create new squeak
-    // Send POST request
-    console.log(this.state.writePostValue);
-  }
-
->>>>>>> Relocates HomePage and SearchPage files to a containers folder and points files to the right directories
   onPostInputChangeHandler(e) {
     this.setState({writePostValue: e.target.value});
   }
