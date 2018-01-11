@@ -16,3 +16,4 @@ const UserInfo = function(props) {
 };
 
 export default UserInfo;
+
