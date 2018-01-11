@@ -1,0 +1,13 @@
+body {
+	text-align: center;
+}
+
+#app,
+#reactapp {
+	height: 100%;
+	width: 100%;
+}
+
+.show-box {
+	border: 2px solid green;
+}

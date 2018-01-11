@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import $ from 'jquery';
-import NavBar from './components/NavBar.jsx';
 import { BrowserRouter, Switch, Route, withRouter } from 'react-router-dom';
-
+import NavBar from './components/NavBar.jsx';
+import SearchPage from './components/SearchPage.jsx';
+import HomePage from './components/HomePage.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -36,15 +36,16 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <NavBar inputValue={this.state.inputValue}
+      <div id="reactapp">
+        <NavBar
+          inputValue={this.state.inputValue}
           searchHandler={this.searchHandler.bind(this)}
           onChangeHandler={this.onInputChangeHandler.bind(this)}/>
         <Switch>
-          <Route exact path="/" render={props => (<span>Home Page</span>)}/>
-          <Route path="/search" render={props => (<span>Search Results Page for {props.location.search.slice(3) /* getting rid of '?q=' that why I start from three */}</span>)}/>
+          <Route exact path="/" render={props => (<HomePage/>)}/>
+          <Route path="/search" render={props => (<SearchPage {...props.location}/>)}/>
           <Route path="/login" render={props => (<span>Login Page</span>)}/>
-          <Route path="/:username" render={props => (<span>{props.match.params.username}'s Profile Page</span>)}/>
+          <Route path="/:username" render={props => (<HomePage username={props.match.params.username}/>)}/>
         </Switch>
       </div>
     );
@@ -53,8 +54,8 @@ class App extends React.Component {
 
 App = withRouter(App);
 
-
 ReactDOM.render(
   <BrowserRouter>
     <App />
-  </BrowserRouter>, document.getElementById('app'));
+  </BrowserRouter>, document.getElementById('app')
+);

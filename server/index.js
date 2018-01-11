@@ -4,16 +4,19 @@ const db = require('../database-mysql');
 const cors = require('cors');
 const path = require('path');
 
-
 let app = express();
 
-app.use(express.static(__dirname + '/../react-client/dist'));
+app.set('port', process.env.PORT || 3000);
 
 app.use(cors());
 
+app.use(bodyParser.json());
+
+app.use(express.static(__dirname + '/../react-client/dist'));
+
 // usage from client /api/search?q=[actual query]
 app.get('/api/search', (req, res) => {
-  // TODO: Database select query for users with that name/username
+  // TODO: Database select query for users with that name/username replacing hardcoded line 21
   // actual query will live in --->  req.query.q
   res.status(200).json([{display_name: 'Feli Caca', username: 'fecatania'}, {display_name: 'Chicken Chesnutt', username: 'henhen'}]);
 });
@@ -22,7 +25,8 @@ app.get('*', function response(req, res) {
   res.sendFile(path.join(__dirname, '..', 'react-client', 'dist', 'index.html'));
 });
 
-var port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log('listening on port ' + port);
-});
+// If we are being run directly, run the server
+if (!module.parent) {
+  app.listen(app.get('port'));
+  console.log('Listening on', app.get('port'));
+};
