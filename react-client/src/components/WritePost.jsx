@@ -9,7 +9,7 @@ const WritePost = (props) => (
           type="text"
           name="name"
           value={props.writePostValue}
-          onChange={this.props.onPostInputChangeHandler}
+          onChange={props.onPostInputChangeHandler}
         />
       </label>
       <input type="submit" value="Submit" />
