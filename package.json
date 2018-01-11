@@ -1,16 +1,16 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
-  "license": "",
+  "name": "squeaker",
+  "version": "0.1.0",
+  "description": "The better Twitter",
+  "author": "Team Number One",
+  "license": "and registration please",
   "engines": {
     "node": ">=6.4.0"
   },
   "scripts": {
     "start": "nodemon server/index.js",
     "dev:react": "webpack -d --watch",
-    "test": "mocha server/spec/server-spec.js",
+    "test": "mocha server/spec/server-spec.js && jest",
     "postinstall": "webpack -p"
   },
   "dependencies": {
@@ -35,6 +35,7 @@
     "react-router-dom": "^4.2.2",
     "request": "^2.83.0",
     "underscore": "^1.8.3",
+    "sinon": "^4.1.4",
     "webpack": "^2.2.1"
   },
   "devDependencies": {
