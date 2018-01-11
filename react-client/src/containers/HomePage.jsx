@@ -1,6 +1,7 @@
 import React from 'react';
-import WritePost from './WritePost.jsx';
+import WritePost from '../components/WritePost.jsx';
 import { Grid, Row, Col } from 'react-bootstrap';
+import UserInfo from '../components/UserInfo.jsx';
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -21,11 +22,17 @@ class HomePage extends React.Component {
 
   render() {
     return (
-      <Grid>
-        <Col xs={6} md={3} className="show-box">
-          <h3>USER INFO / TRENDING</h3>
-        </Col>
-        <Col xs={6} md={6} className="show-box">
+    <Grid>
+      <Col className="col-md-3 show-box show-grid">
+        <Row className="show-box">
+          <UserInfo />
+        </Row>
+        <Row className="show-box">
+          <h3>TRENDING</h3>
+        </Row>
+      </Col>
+      <Col className="col-md-6 show-box show-grid">
+        <Row className="show-box">
           <div className="home">
             <WritePost
               writePostValue={this.state.writePostValue}
@@ -33,12 +40,20 @@ class HomePage extends React.Component {
               writePostHandler={this.writePostHandler.bind(this)}
             />
           </div>
+        </Row>
+        <Row className="show-box">
           <h3>FEED</h3>
-        </Col>
-        <Col xsHidden md={3} className="show-box">
-          <h3>WHO TO FOLLOW / BOTTOM NAV</h3>
-        </Col>
-      </Grid>
+        </Row>
+      </Col>
+      <Col className="col-md-3 show-box show-grid">
+        <Row className="show-box">
+          <h3>WHO TO FOLLOW</h3>
+        </Row>
+        <Row className="show-box">
+          <h3>BOTTOM NAV</h3>
+        </Row>
+      </Col>
+    </Grid>
     );
   }
 }
