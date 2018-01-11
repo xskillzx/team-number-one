@@ -46,8 +46,9 @@ class HomePage extends React.Component {
   }
 
   writePostHandler() {
-    // TODO
-    console.log('I was clicked');
+    // Create new squeak
+    // Send POST request
+    console.log(this.state.writePostValue);
   }
 
 >>>>>>> Relocates HomePage and SearchPage files to a containers folder and points files to the right directories
