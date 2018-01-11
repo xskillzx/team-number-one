@@ -10,6 +10,7 @@ class HomePage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+<<<<<<< HEAD
       writePostValue: '',
       squeaks: []
     };
@@ -39,6 +40,17 @@ class HomePage extends React.Component {
   }
 
 <<<<<<< HEAD
+=======
+      writePostValue: ''
+    };
+  }
+
+  writePostHandler() {
+    // TODO
+    console.log('I was clicked');
+  }
+
+>>>>>>> Relocates HomePage and SearchPage files to a containers folder and points files to the right directories
   onPostInputChangeHandler(e) {
     this.setState({writePostValue: e.target.value});
   }
@@ -79,38 +91,6 @@ class HomePage extends React.Component {
       </Grid>
     );
   }
-=======
-	render() {
-		return(
-		  <Grid>
-		    <Col className="col-md-3 show-box show-grid">
-		      <Row className="show-box">
-		        <UserInfo />
-		      </Row>
-		      <Row className="show-box">
-		        <h3>TRENDING</h3>
-		      </Row>
-		    </Col>
-		    <Col className="col-md-6 show-box show-grid">
-		      <Row className="show-box">
-		        <h3>POST</h3>
-		      </Row>
-		      <Row className="show-box">
-		        <h3>FEED</h3>
-		      </Row>
-		    </Col>
-		    <Col className="col-md-3 show-box show-grid">
-		      <Row className="show-box">
-		        <h3>WHO TO FOLLOW</h3>
-		      </Row>
-		      <Row className="show-box">
-		        <h3>BOTTOM NAV</h3>
-		      </Row>
-		    </Col>
-		  </Grid>
-		)
-	}
->>>>>>> Added placeholders to userinfo
 }
 
 export default HomePage;
