@@ -11,6 +11,7 @@ class HomePage extends React.Component {
 
   writePostHandler() {
     // TODO
+    console.log('I was clicked');
   }
 
   onPostInputChangeHandler(e) {
