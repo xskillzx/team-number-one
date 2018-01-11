@@ -76,6 +76,7 @@ const homePageGrid = (
 ReactDOM.render(
   <BrowserRouter>
     <App />
-  </BrowserRouter>, document.getElementById('app'));
+  </BrowserRouter>, document.getElementById('app')
+);
 
 // making something to changeee
