@@ -73,4 +73,10 @@ ReactDOM.render(
   <BrowserRouter>
     <App />
   </BrowserRouter>, document.getElementById('app')
+<<<<<<< HEAD
 );
+=======
+);
+
+// making something to changeee
+>>>>>>> rename Home to HomePage.jsx
