@@ -10,7 +10,7 @@
   "scripts": {
     "start": "nodemon server/index.js",
     "dev:react": "webpack -d --watch",
-    "test": "jest",
+    "test": "mocha server/spec/server-spec.js",
     "postinstall": "webpack -p"
   },
   "dependencies": {
@@ -21,15 +21,19 @@
     "babel-preset-react": "^6.23.0",
     "babel-register": "^6.7.2",
     "body-parser": "^1.17.2",
-    "bootstrap": "^3.3.7",
+    "bootstrap": "^4.0.0-alpha.6",
+    "chai": "^4.1.2",
     "cors": "^2.8.4",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
     "express": "^4.15.4",
     "jquery": "^3.2.1",
+    "mocha": "^4.1.0",
     "mysql": "^2.14.1",
     "react": "^15.6.1",
+    "react-bootstrap": "^0.32.0",
     "react-dom": "^15.6.1",
     "react-router-dom": "^4.2.2",
+    "request": "^2.83.0",
     "underscore": "^1.8.3",
     "webpack": "^2.2.1"
   },

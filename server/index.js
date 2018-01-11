@@ -4,12 +4,18 @@ const db = require('../database-mysql');
 const cors = require('cors');
 const path = require('path');
 
-
 let app = express();
 
-app.use(express.static(__dirname + '/../react-client/dist'));
+// set what we are listening on
+app.set('port', process.env.PORT || 3000);
 
 app.use(cors());
+
+// parsing
+app.use(bodyParser.json());
+
+// server client files
+app.use(express.static(__dirname + '/../react-client/dist'));
 
 // usage from client /api/search?q=[actual query]
 app.get('/api/search', (req, res) => {
@@ -22,7 +28,8 @@ app.get('*', function response(req, res) {
   res.sendFile(path.join(__dirname, '..', 'react-client', 'dist', 'index.html'));
 });
 
-var port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log('listening on port ' + port);
-});
+// If we are being run directly, run the server
+if (!module.parent) {
+  app.listen(app.get('port'));
+  console.log('Listening on', app.get('port'));
+};
