@@ -2,12 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Switch, Route, withRouter } from 'react-router-dom';
 import NavBar from './components/NavBar.jsx';
-import SearchPage from './components/SearchPage.jsx';
-<<<<<<< HEAD
-import HomePage from './components/HomePage.jsx';
-=======
+import SearchPage from './containers/SearchPage.jsx';
 import HomePage from './containers/HomePage.jsx';
->>>>>>> Added placeholders to userinfo
 
 class App extends React.Component {
   constructor(props) {
