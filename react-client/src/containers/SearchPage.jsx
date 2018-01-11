@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
 import $ from 'jquery';
-import Feed from './Feed.jsx';
+import Feed from '../components/Feed.jsx';
 
 class SearchPage extends React.Component {
   constructor(props) {
