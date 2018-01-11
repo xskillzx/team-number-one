@@ -21,7 +21,7 @@ class HomePage extends React.Component {
     return (
       <div className="home">
         <WritePost
-          writePostValue={this.state.writePost}
+          writePostValue={this.state.writePostValue}
           onPostInputChangeHandler={this.onPostInputChangeHandler.bind(this)}
           writePostHandler={this.writePostHandler.bind(this)}
         />
