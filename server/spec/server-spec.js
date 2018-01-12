@@ -67,6 +67,8 @@ describe('Persistent Node Squeaker Server', function() {
 	});
 
 	it('The db should return something when hitting /api/search', done => {
+		console.log(process.env);
+		console.log(process.env.PORT);
 		let uri = process.env.PORT ? '/api/search?q=fe' : 'http://127.0.0.1:3000/api/search?q=fe';
 		// let port = process.env.PORT || 3000;
 		request(uri, (error, response, body) => {
