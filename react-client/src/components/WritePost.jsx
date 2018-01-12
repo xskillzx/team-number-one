@@ -9,6 +9,11 @@ const WritePost = (props) => (
         name="name"
         value={props.writePostValue}
         onChange={props.onPostInputChangeHandler}
+        onKeyPress={e => {
+          if (e.key === 'Enter') {
+            props.writePostHandler();
+          }
+        }}
       />
     </label>
     <input type="submit" value="Submit" onClick={props.writePostHandler} />
