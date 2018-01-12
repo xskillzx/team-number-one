@@ -29,6 +29,15 @@ let userInfo = function(id, cb) {
 	});
 };
 
+// should eventually grab all squeaks of current user and those being 'followed'
+// until follow functionality is built all squeaks will be returned
+let allSqueaks = function(id, cb) {
+  connection.query(`SELECT * FROM squeaks`, (err, results) => {
+    err ? cb(err) : cb(null, results);
+  });
+};
+
 module.exports.userInfo = userInfo;
 module.exports.searchUsers = searchUsers;
 module.exports.writePost = writePost;
+module.exports.allSqueaks = allSqueaks;

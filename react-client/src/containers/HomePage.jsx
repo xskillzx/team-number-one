@@ -3,13 +3,28 @@ import WritePost from '../components/WritePost.jsx';
 import { Grid, Row, Col } from 'react-bootstrap';
 import UserInfo from '../components/UserInfo.jsx';
 import axios from 'axios';
+import $ from 'jquery';
+import Feed from '../components/Feed.jsx';
 
 class HomePage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      writePostValue: ''
+      writePostValue: '',
+      squeaks: []
     };
+  }
+
+  componentDidMount(id) {
+    // i want all the squeaks created by user and 'following'
+    let settings = {
+      url: '/api/userinfo/1/squeaks/all',
+      method: 'GET',
+      contentType: 'application/json'
+    }
+    $.ajax(settings).done(data => {
+      this.setState({squeaks: data}, () => console.log(this.state.squeaks));
+    });
   }
 
   writePostHandler() {
@@ -49,7 +64,7 @@ class HomePage extends React.Component {
             </div>
           </Row>
           <Row className="show-box">
-            <h3>FEED</h3>
+            <Feed squeaks={this.state.squeaks}/>
           </Row>
         </Col>
         <Col className="col-md-3 show-box show-grid">
