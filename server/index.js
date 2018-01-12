@@ -14,11 +14,14 @@ app.use(bodyParser.json());
 
 app.use(express.static(__dirname + '/../react-client/dist'));
 
-// usage from client /api/search?q=[actual query]
 app.get('/api/search', (req, res) => {
-  // TODO: Database select query for users with that name/username replacing hardcoded line 21
-  // actual query will live in --->  req.query.q
-  res.status(200).json([{display_name: 'Feli Caca', username: 'fecatania'}, {display_name: 'Chicken Chesnutt', username: 'henhen'}]);
+  // TODO: nice to have also search for squeaks or tags or whatever other entity
+  db.searchUsers(req.query.q, (err, results) => {
+    if (err) {
+      res.status(500).send(err);
+    }
+    res.status(200).json(results);
+  });
 });
 
 app.get('*', function response(req, res) {

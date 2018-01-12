@@ -38,4 +38,14 @@ describe('Persistent Node Squeaker Server', function() {
 			done();
 		});
 	});
+
+	// TODO: enable test by removing the x.
+	// Find out which is the correct uri/path for travis testing and heroku
+	xit('The db should return something when hitting /api/search', done => {
+		request('http://127.0.0.1:3000/api/search?q=fe', (error, response, body) => {
+			console.log(error);
+			expect(body).to.be.an('string'); // not a string actually
+			done();
+		});
+	});
 });
