@@ -14,6 +14,7 @@
     "postinstall": "webpack -p"
   },
   "dependencies": {
+    "axios": "^0.17.1",
     "babel-cli": "^6.7.5",
     "babel-core": "^6.23.1",
     "babel-loader": "^6.3.2",

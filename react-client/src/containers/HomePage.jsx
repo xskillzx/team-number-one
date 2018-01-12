@@ -2,7 +2,7 @@ import React from 'react';
 import WritePost from '../components/WritePost.jsx';
 import { Grid, Row, Col } from 'react-bootstrap';
 import UserInfo from '../components/UserInfo.jsx';
-import $ from 'jquery';
+import axios from 'axios';
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -13,21 +13,13 @@ class HomePage extends React.Component {
   }
 
   writePostHandler() {
-    var squeak = {
-      userId: 89, //TODO Fix when props are passed
+    axios.post('/api/writepost', {
+      userId: 2, //TODO Fix when props are passed
       text: this.writePostValue
-    };
-    $.ajax({
-      url: '/api/writepost', //TODO update url
-      method: 'POST',
-      contentType: 'application/json',
-      data: JSON.stringify(squeak),
-      success: res => {
-        console.log('res');
-      },
-      error: err => {
-        console.error('err');
-      }
+    }).then(response => {
+      console.log('You just squeaked!');
+    }).catch(err => {
+      console.error(err);
     });
   }
 
