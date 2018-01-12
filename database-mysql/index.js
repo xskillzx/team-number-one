@@ -32,7 +32,7 @@ let userInfo = function(id, cb) {
 // should eventually grab all squeaks of current user and those being 'followed'
 // until follow functionality is built all squeaks will be returned
 let allSqueaks = function(id, cb) {
-  connection.query(`SELECT * FROM squeaks`, (err, results) => {
+  connection.query(`SELECT * FROM squeaks INNER JOIN users WHERE squeaks.user_id = users.id`, (err, results) => {
     err ? cb(err) : cb(null, results);
   });
 };
