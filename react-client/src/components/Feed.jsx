@@ -10,7 +10,13 @@ const Feed = ({ squeaks, users }) => (
     }
     {users &&
       users.map(user => (
-        <span key={user.id} className="show-box">User Entry Comp</span>
+        <span key={user.id} className="show-box">
+          <span>HERE GOES THE USERENTRY COMP meanwhile...</span><br/>
+          <span>@{user.username}</span><br/>
+          <span>{user.display_name}</span><br/>
+          <span>{user.bio_text}</span><br/>
+          <button>FOLLOW</button><br/>
+        </span>
       ))}
   </div>
 );
