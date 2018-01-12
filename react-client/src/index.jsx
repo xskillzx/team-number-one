@@ -5,6 +5,7 @@ import NavBar from './components/NavBar.jsx';
 import SearchPage from './containers/SearchPage.jsx';
 import HomePage from './containers/HomePage.jsx';
 import UserPage from './containers/UserPage.jsx';
+import LoginPage from './containers/LoginPage.jsx';
 import $ from 'jquery';
 
 class App extends React.Component {
@@ -13,7 +14,18 @@ class App extends React.Component {
     this.state = {
       userinfo: [{}],
       inputValue: '',
-      counts: undefined
+      counts: undefined,
+      loggedIn: 0,
+      squeaks: [{
+        username: 'Moisays',
+        displayName: 'MoisesM',
+        text: 'things are awesome'
+      },
+      {
+        username: 'FelIs',
+        displayName: 'Feli Catania',
+        text: 'coding is cool I guess'
+      }]
     };
   }
 
