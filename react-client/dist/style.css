@@ -1,4 +1,24 @@
 body {
+	/* IE10+ */ 
+	background-image: -ms-linear-gradient(top, #FBCD4B 0%, #282623 100%);
+
+	/* Mozilla Firefox */ 
+	background-image: -moz-linear-gradient(top, #FBCD4B 0%, #282623 100%);
+
+	/* Opera */ 
+	background-image: -o-linear-gradient(top, #FBCD4B 0%, #282623 100%);
+
+	/* Webkit (Safari/Chrome 10) */ 
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #FBCD4B), color-stop(100, #282623));
+
+	/* Webkit (Chrome 11+) */ 
+	background-image: -webkit-linear-gradient(top, #FBCD4B 0%, #282623 100%);
+
+	/* W3C Markup */ 
+	background-image: linear-gradient(to bottom, #FBCD4B 0%, #282623 100%);
+	background-repeat: no-repeat;
+	background-size: 100%;
+	height: 100vh;
 	text-align: center;
 }
 
@@ -9,7 +29,7 @@ body {
 }
 
 .show-box {
-	border: 2px solid green;
+	border: 0.5px dashed #A3A599;
 }
 
 .narbar {
@@ -33,9 +53,20 @@ body {
 
 .squeak-entry {
 	border: 1px solid #A3A599;
-	background: #88A550;
+	background: #FBCD4B;
+	color: #282623;
+	font-size: 14px;
+	padding-top: 5px;
 }
 
 .navbar-default {
 	background: #FBCD4B;
+}
+
+.squeak-name-time {
+	color: #A3A599;
+}
+
+.media-heading {
+	font-size: 14px;
 }
