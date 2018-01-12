@@ -10,7 +10,7 @@ if (process.env.JAWSDB_URL) {
   connection = mysql.createConnection(mysqlConfig);
 }
 
-let searchUsers = function(searchQuery, cb) {
+let searchUsers = function(searchQuery, loggedUserId, cb) {
   connection.query(`SELECT users.*, IF(follows.follower_id = ${loggedUserId}, 1, 0) AS is_followed FROM users LEFT JOIN follows ON followed_id = users.id WHERE users.username LIKE '%${searchQuery}%' OR users.display_name LIKE '%${searchQuery}%'`, (err, results) => {
     err ? cb(err, null) : cb(null, results);
   });
