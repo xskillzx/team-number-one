@@ -14,7 +14,7 @@ class HomePage extends React.Component {
 
   writePostHandler() {
     axios.post('/api/writepost', {
-      userId: 89, //TODO Fix when props are passed
+      userId: 2, //TODO Fix when props are passed
       text: this.writePostValue
     }).then(response => {
       console.log('You just squeaked!');

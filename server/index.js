@@ -15,18 +15,29 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + '/../react-client/dist'));
 
 app.get('/api/userinfo/:id', (req, res) => {
-	db.userInfo(Number(req.params.id), (err, results) => {
+  db.userInfo(Number(req.params.id), (err, results) => {
 		err ? res.send(err) : res.send(results);
 	});
 });
 
 app.get('/api/search', (req, res) => {
-  // TODO: nice to have also search for squeaks or tags or whatever other entity
-  db.searchUsers(req.query.q, (err, results) => {
+  // TODO: receive somehow loggedUserId to be able to tell if the users are being followed or not by this user
+  let loggedUserId = 1; // hardcoded
+  db.searchUsers(req.query.q, loggedUserId, (err, results) => {
     if (err) {
       res.status(500).send(err);
     }
     res.status(200).json(results);
+  });
+});
+
+app.post('/api/writepost', (req, res) => {
+	console.log(req.body)
+  db.writePost(req.body, (err, results) => {
+    if (err) {
+      res.status(500).send(err);
+    }
+    res.status(200).send();
   });
 });
 
