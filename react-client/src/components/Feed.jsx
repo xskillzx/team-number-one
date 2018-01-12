@@ -1,5 +1,6 @@
 import React from 'react';
 import SqueakEntry from './SqueakEntry.jsx';
+import UserEntry from './UserEntry.jsx';
 
 const Feed = ({ squeaks, users }) => (
   <div>
@@ -10,13 +11,7 @@ const Feed = ({ squeaks, users }) => (
     }
     {users &&
       users.map(user => (
-        <span key={user.id} className="show-box">
-          <span>HERE GOES THE USERENTRY COMP meanwhile...</span><br/>
-          <span>@{user.username}</span><br/>
-          <span>{user.display_name}</span><br/>
-          <span>{user.bio_text}</span><br/>
-          <button>FOLLOW</button><br/>
-        </span>
+        <UserEntry {...user} key={user.id}/>
       ))}
   </div>
 );
