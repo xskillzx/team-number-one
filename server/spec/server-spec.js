@@ -20,7 +20,7 @@ describe('Persistent Node Squeaker Server', function() {
 
 	afterEach(() => dbConnection.end());
 
-  it('Should collect user data for the logged in user', function(done) {
+  xit('Should collect user data for the logged in user', function(done) {
     // GET user data from server.
     request({
     	method: 'GET',
