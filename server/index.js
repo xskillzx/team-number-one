@@ -14,6 +14,12 @@ app.use(bodyParser.json());
 
 app.use(express.static(__dirname + '/../react-client/dist'));
 
+app.get('/api/userinfo/:id/squeaks/all', (req, res) => {
+  db.allSqueaks(Number(req.params.id), (err, results) => {
+    err ? res.send(err) : res.send(results);
+  });
+});
+
 app.get('/api/userinfo/:id', (req, res) => {
 	db.userInfo(Number(req.params.id), (err, results) => {
 		err ? res.send(err) : res.send(results);

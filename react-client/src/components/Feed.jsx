@@ -1,8 +1,15 @@
 import React from 'react';
 import SqueakEntry from './SqueakEntry.jsx';
 
-const Feed = ({ squeaks, users }) => (
-  <div>
+const Feed = (props) => (
+<div className="feed-container">
+  {props.squeaks.map(squeak => <SqueakEntry key={squeak.id} squeak={squeak} />)}
+</div>
+);
+
+export default Feed;
+
+/*  <div>
     {squeaks &&
       squeaks.map(squeak => (
         <SqueakEntry key={squeak.id} squeak={squeak}/>
@@ -18,7 +25,4 @@ const Feed = ({ squeaks, users }) => (
           <button>FOLLOW</button><br/>
         </span>
       ))}
-  </div>
-);
-
-export default Feed;
+  </div>*/
