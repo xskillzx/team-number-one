@@ -9,15 +9,3 @@ const Feed = (props) => (
 );
 
 export default Feed;
-
-/*  <div>
-    {squeaks &&
-      squeaks.map(squeak => (
-        <SqueakEntry key={squeak.id} squeak={squeak}/>
-      ))
-    }
-    {users &&
-      users.map(user => (
-        <UserEntry {...user} key={user.id}/>
-      ))}
-  </div>*/
