@@ -29,7 +29,7 @@ describe('Persistent Node Squeaker Server', function() {
     }, (err, res, body = '{}') => {
     	let data = JSON.parse(body);
 
-    	expect(Object.keys(body[0]).length).to.equal(6);
+    	expect(Object.keys(data[0]).length).to.equal(6);
 
 			expect(data[0].id).to.equal(1);
 			done();
