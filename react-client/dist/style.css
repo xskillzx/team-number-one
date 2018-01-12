@@ -29,16 +29,11 @@ body {
 }
 
 .show-box {
-<<<<<<< HEAD
 	border: 0.5px dashed #A3A599;
-=======
-	border: 2px solid green;
->>>>>>> Creates UserInfo component
 }
 
 .narbar {
 	height: 10%
-<<<<<<< HEAD
 }
 
 .user-entry-image {
@@ -74,6 +69,4 @@ body {
 
 .media-heading {
 	font-size: 14px;
-=======
->>>>>>> Creates UserInfo component
 }
