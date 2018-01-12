@@ -26,7 +26,7 @@ describe('Persistent Node Squeaker Server', function() {
     	method: 'GET',
     	uri: 'http://127.0.0.1:3000/api/userinfo/1',
     	contentType: 'application/json'
-    }, (err, res, body) => {
+    }, (err, res, body = {}) => {
     	let data = JSON.parse(body);
 
     	expect(Object.keys(data[0]).length).to.equal(6);
