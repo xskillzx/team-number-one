@@ -21,7 +21,7 @@ class SearchPage extends React.Component {
     return (
       <Grid>
         <Col xsHidden smHidden md={4} className="show-box">User Info Comp</Col>
-        <Col xs={12} md={8} className="show-box">
+        <Col xs={12} md={8}>
           <Feed users={this.state.users}/>
         </Col>
       </Grid>
