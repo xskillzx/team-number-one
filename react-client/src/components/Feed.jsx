@@ -9,3 +9,4 @@ const Feed = (props) => (
 );
 
 export default Feed;
+
