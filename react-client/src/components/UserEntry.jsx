@@ -5,7 +5,7 @@ const UserEntry = ({ id, username, display_name, bio_text, profile_img_url }) =>
   <Col xs={4}>
     <Panel>
       <Panel.Body>
-      <Image className="image" src={profile_img_url} circle/>
+      <Image className="user-entry-image" src={profile_img_url} circle/>
       </Panel.Body>
       <Panel.Footer className="user-footer">
         <h6>@{username}</h6>
