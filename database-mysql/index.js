@@ -16,6 +16,13 @@ let searchUsers = function(searchQuery, cb) {
   });
 };
 
+let writePost = function(squeak, cb) {
+  let createdAt = (new Date()).toISOString().substring(0, 19).replace('T', ' ');
+  connection.query(`INSERT INTO squeaks (user_id, text, created_at) VALUES (${squeak.userId}, '${squeak.text}', '${createdAt}')`, (err, results) => {
+    err ? cb(err, null) : cb(null, results);
+  });
+};
+
 let userInfo = function(id, cb) {
 	connection.query(`SELECT * FROM users WHERE id = ${id}`, (err, results) => {
 		err ? cb(err) : cb(null, results);
@@ -24,3 +31,4 @@ let userInfo = function(id, cb) {
 
 module.exports.userInfo = userInfo;
 module.exports.searchUsers = searchUsers;
+module.exports.writePost = writePost;
