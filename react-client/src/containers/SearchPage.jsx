@@ -7,17 +7,13 @@ class SearchPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      users: [ // TODO: remove this sample users once the server creates a search query
-        {id: 1, username: 'fefecaca', display_name: 'Feli#1'},
-        {id: 2, username: 'henhen', display_name: 'Chesnaughty'}
-      ]
+      users: []
     };
   }
 
   componentDidMount() {
     $.get(`/api/search?q=${this.props.search.slice(3)}`, (data) => {
-      // TODO: render data received by setting state with new users
-      console.log(data);
+      this.setState({users: data})
     });
   }
   
