@@ -30,6 +30,18 @@ app.get('/api/search', (req, res) => {
   });
 });
 
+app.put('/api/follow', (req, res) => {
+  db.followUser(req.body.follower_id, req.body.followed_id, (err, results) => {
+    res.status(201).send('Follow successful');
+  });
+});
+
+app.put('/api/unfollow', (req, res) => {
+  db.unfollowUser(req.body.follower_id, req.body.followed_id, (err, results) => {
+    res.status(201).send('Unfollow successful');
+  });
+});
+
 app.get('*', function response(req, res) {
   res.sendFile(path.join(__dirname, '..', 'react-client', 'dist', 'index.html'));
 });

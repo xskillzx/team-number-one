@@ -22,5 +22,19 @@ let userInfo = function(id, cb) {
 	});
 };
 
+let followUser = function(followerId, followedId, cb) {
+  connection.query(`INSERT INTO follows (follower_id, followed_id) VALUES (${followerId}, ${followedId})`, (err, results) => {
+    err ? cb(err, null) : cb(null, results);
+  });
+};
+
+let unfollowUser = function(followerId, followedId, cb) {
+  connection.query(`DELETE FROM follows WHERE follower_id = ${followerId} AND followed_id = ${followedId}`, (err, results) => {
+    err ? cb(err, null) : cb(null, results);
+  });
+};
+
 module.exports.userInfo = userInfo;
 module.exports.searchUsers = searchUsers;
+module.exports.followUser = followUser;
+module.exports.unfollowUser = unfollowUser;
