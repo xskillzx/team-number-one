@@ -25,3 +25,17 @@ body {
 .user-footer {
 	min-height: 150px;
 }
+
+.feed-container {
+	height: 100%;
+	width: 100%;
+}
+
+.squeak-entry {
+	border: 1px solid #A3A599;
+	background: #88A550;
+}
+
+.navbar-default {
+	background: #FBCD4B;
+}
