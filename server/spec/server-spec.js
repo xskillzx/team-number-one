@@ -3,6 +3,7 @@
 const mysql = require('mysql');
 const request = require('request');
 const expect = require('chai').expect;
+const express = require('express');
 
 describe('Persistent Node Squeaker Server', function() {
 	let dbConnection;
@@ -18,6 +19,22 @@ describe('Persistent Node Squeaker Server', function() {
 	});
 
 	afterEach(() => dbConnection.end());
+
+  it('Should collect user data for the logged in user', function(done) {
+    // GET user data from server.
+    request({
+    	method: 'GET',
+    	uri: 'http://127.0.0.1:3000/api/userinfo/1',
+    	contentType: 'application/json'
+    }, (err, res, body) => {
+    	let data = JSON.parse(body);
+
+    	expect(Object.keys(data[0]).length).to.equal(6);
+
+			expect(data[0].id).to.equal(1);
+			done();
+    });
+  });
 
 	it('The db should have four default users with username, displayname, bio text, profile picture and profile banner', done => {
 		dbConnection.query('SELECT * FROM users', (err, results) => {

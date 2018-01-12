@@ -14,6 +14,13 @@ let searchUsers = function(searchQuery, cb) {
   connection.query(`SELECT * FROM users WHERE username LIKE '%${searchQuery}%' OR display_name LIKE '%${searchQuery}%'`, (err, results) => {
     err ? cb(err, null) : cb(null, results);
   });
-}
+};
 
+let userInfo = function(id, cb) {
+	connection.query(`SELECT * FROM users WHERE id = ${id}`, (err, results) => {
+		err ? cb(err) : cb(null, results);
+	});
+};
+
+module.exports.userInfo = userInfo;
 module.exports.searchUsers = searchUsers;
