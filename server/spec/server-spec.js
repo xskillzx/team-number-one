@@ -3,6 +3,7 @@
 const mysql = require('mysql');
 const request = require('request');
 const expect = require('chai').expect;
+const express = require('express');
 
 describe('Persistent Node Squeaker Server', function() {
 	let dbConnection;
@@ -18,6 +19,22 @@ describe('Persistent Node Squeaker Server', function() {
 	});
 
 	afterEach(() => dbConnection.end());
+
+  xit('Should collect user data for the logged in user', function(done) {
+    // GET user data from server.
+    request({
+    	method: 'GET',
+    	uri: 'http://127.0.0.1:3000/api/userinfo/1',
+    	contentType: 'application/json'
+    }, (err, res, body = '{}') => {
+    	let data = JSON.parse(body);
+
+    	expect(Object.keys(data[0]).length).to.equal(6);
+
+			expect(data[0].id).to.equal(1);
+			done();
+    });
+  });
 
 	it('The db should have four default users with username, displayname, bio text, profile picture and profile banner', done => {
 		dbConnection.query('SELECT * FROM users', (err, results) => {
@@ -38,4 +55,16 @@ describe('Persistent Node Squeaker Server', function() {
 			done();
 		});
 	});
+
+	// TODO: enable test by removing the x.
+	// Find out which is the correct uri/path for travis testing and heroku
+	xit('The db should return something when hitting /api/search', done => {
+		request('http://127.0.0.1:3000/api/search?q=fe', (error, response, body) => {
+			console.log(error);
+			expect(body).to.be.an('string'); // not a string actually
+			done();
+		});
+	});
 });
+
+// tes

@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import { shallow, mount } from 'enzyme';
 import { spy } from 'sinon';
-import SearchPage from '../src/components/SearchPage.jsx';
+import SearchPage from '../src/containers/SearchPage.jsx';
 
 describe('Test SearchPage', () => {
   it('SearchPage should call componentDidMount()', () => {

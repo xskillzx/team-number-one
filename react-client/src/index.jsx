@@ -2,13 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Switch, Route, withRouter } from 'react-router-dom';
 import NavBar from './components/NavBar.jsx';
-import SearchPage from './components/SearchPage.jsx';
-import HomePage from './components/HomePage.jsx';
+import SearchPage from './containers/SearchPage.jsx';
+import HomePage from './containers/HomePage.jsx';
+import $ from 'jquery';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      userinfo: [],
       inputValue: '',
       squeaks: [{
         username: 'Moisays',
@@ -28,6 +30,18 @@ class App extends React.Component {
       this.props.history.push(`/search?q=${this.state.inputValue}`);
       this.setState({inputValue: ''});
     }
+  }
+
+  componentDidMount() {
+    let settings = {
+      url: '/api/userinfo/1',
+      method: 'GET',
+      contentType: "application/json",
+    }
+
+    $.ajax(settings).done(data => {
+      this.setState({userinfo: data}, () => console.log(this.state.userinfo));
+    });
   }
 
   onInputChangeHandler(e) {
