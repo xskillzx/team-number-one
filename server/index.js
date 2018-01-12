@@ -32,7 +32,6 @@ app.get('/api/search', (req, res) => {
 });
 
 app.post('/api/writepost', (req, res) => {
-	console.log(req.body)
   db.writePost(req.body, (err, results) => {
     if (err) {
       res.status(500).send(err);
