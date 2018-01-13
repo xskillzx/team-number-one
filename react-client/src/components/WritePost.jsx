@@ -23,17 +23,3 @@ const WritePost = (props) => (
 );
 
 export default WritePost;
-
-/*      <input
-        type="text"
-        name="name"
-        value={props.writePostValue}
-        onChange={props.onPostInputChangeHandler}
-        onKeyPress={e => {
-          if (e.key === 'Enter') {
-            props.writePostHandler();
-          }
-        }}
-
-<input type="submit" value="Submit" onClick={props.writePostHandler} />
-      />*/
