@@ -17,13 +17,17 @@ class HomePage extends React.Component {
 
   componentDidMount(id) {
     // i want all the squeaks created by user and 'following'
+    this.getAllSqueaks();
+  }
+
+  getAllSqueaks(id) {
     let settings = {
       url: '/api/userinfo/1/squeaks/all',
       method: 'GET',
       contentType: 'application/json'
     }
     $.ajax(settings).done(data => {
-      this.setState({squeaks: data}, () => console.log(this.state.squeaks));
+      this.setState({squeaks: data});
     });
   }
 
@@ -32,7 +36,7 @@ class HomePage extends React.Component {
       userId: 2, //TODO Fix when props are passed
       text: this.state.writePostValue
     }).then(response => {
-      console.log('You just squeaked!');
+      this.getAllSqueaks();
     }).catch(err => {
       console.error(err);
     });

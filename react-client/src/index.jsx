@@ -40,7 +40,7 @@ class App extends React.Component {
     }
 
     $.ajax(settings).done(data => {
-      this.setState({userinfo: data}, () => console.log(this.state.userinfo));
+      this.setState({userinfo: data});
     });
   }
 
