@@ -72,10 +72,9 @@ CREATE TABLE `replies` (
 DROP TABLE IF EXISTS `follows`;
         
 CREATE TABLE `follows` (
-  `id` INTEGER NOT NULL AUTO_INCREMENT,
   `follower_id` INTEGER NOT NULL,
   `followed_id` INTEGER NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`follower_id`, `followed_id`)
 );
 -- ---
 -- Foreign Keys 

@@ -10,8 +10,8 @@ if (process.env.JAWSDB_URL) {
   connection = mysql.createConnection(mysqlConfig);
 }
 
-let searchUsers = function(searchQuery, cb) {
-  connection.query(`SELECT * FROM users WHERE username LIKE '%${searchQuery}%' OR display_name LIKE '%${searchQuery}%'`, (err, results) => {
+let searchUsers = function(searchQuery, loggedUserId, cb) {
+  connection.query(`SELECT users.*, IF(follows.follower_id = ${loggedUserId}, 1, 0) AS is_followed FROM users LEFT JOIN follows ON followed_id = users.id WHERE users.username LIKE '%${searchQuery}%' OR users.display_name LIKE '%${searchQuery}%'`, (err, results) => {
     err ? cb(err, null) : cb(null, results);
   });
 };
@@ -39,7 +39,21 @@ let allSqueaks = function(id, cb) {
   });
 };
 
-module.exports.userInfo = userInfo;
+let followUser = function(followerId, followedId, cb) {
+  connection.query(`INSERT INTO follows (follower_id, followed_id) VALUES (${followerId}, ${followedId})`, (err, results) => {
+    err ? cb(err, null) : cb(null, results);
+  });
+};
+
+let unfollowUser = function(followerId, followedId, cb) {
+  connection.query(`DELETE FROM follows WHERE follower_id = ${followerId} AND followed_id = ${followedId}`, (err, results) => {
+    err ? cb(err, null) : cb(null, results);
+  });
+};
+
 module.exports.searchUsers = searchUsers;
 module.exports.writePost = writePost;
+module.exports.userInfo = userInfo;
 module.exports.allSqueaks = allSqueaks;
+module.exports.followUser = followUser;
+module.exports.unfollowUser = unfollowUser;
