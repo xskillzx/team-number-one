@@ -27,8 +27,9 @@ app.get('/api/userinfo/:id', (req, res) => {
 });
 
 app.get('/api/search', (req, res) => {
-  // TODO: nice to have also search for squeaks or tags or whatever other entity
-  db.searchUsers(req.query.q, (err, results) => {
+  // TODO: receive somehow loggedUserId to be able to tell if the users are being followed or not by this user
+  let loggedUserId = 1; // hardcoded
+  db.searchUsers(req.query.q, loggedUserId, (err, results) => {
     if (err) {
       res.status(500).send(err);
     }
@@ -37,12 +38,23 @@ app.get('/api/search', (req, res) => {
 });
 
 app.post('/api/writepost', (req, res) => {
-	console.log(req.body)
   db.writePost(req.body, (err, results) => {
     if (err) {
       res.status(500).send(err);
     }
     res.status(200).send();
+  });
+});
+
+app.put('/api/follow', (req, res) => {
+  db.followUser(req.body.follower_id, req.body.followed_id, (err, results) => {
+    res.status(201).send('Follow successful');
+  });
+});
+
+app.put('/api/unfollow', (req, res) => {
+  db.unfollowUser(req.body.follower_id, req.body.followed_id, (err, results) => {
+    res.status(201).send('Unfollow successful');
   });
 });
 
