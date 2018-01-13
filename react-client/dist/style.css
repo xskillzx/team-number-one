@@ -26,6 +26,11 @@ a:hover {
 	text-decoration: none;
 }
 
+input.form-control:focus,
+input:focus {
+	outline-color: #88A550;
+}
+
 #app,
 #reactapp {
 	height: 100%;
@@ -157,6 +162,10 @@ a.navbar-brand,
 	font-size: 12px;
 }
 
+.userinfo-userfields {
+	padding: 3px;
+}
+
 .post {
 	height: 58px;
 	padding: 10px 12px;
@@ -175,10 +184,6 @@ a.navbar-brand,
 	max-width: 506px;
 	text-align: center;
 	width: 85%;
-}
-
-.post-squeakinput:focus {
-	outline-color: #88A550;
 }
 
 .squeakfeed {
