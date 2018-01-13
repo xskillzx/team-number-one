@@ -1,20 +1,37 @@
 import React from 'react';
+import { Panel, Image } from 'react-bootstrap';
 
 const UserInfo = function(props) {
 	return (
-		<div className="userinfo">
-			<h1>THIS IS THE USER INFO COMPONENT OMG</h1>
-			<span>User Banner</span>
-			<span>User Pic</span>
-			<span>Display Name</span>
-			<span>Username</span>
-			<span>Squeaks</span>
-			<span>Following</span>
-			<span>Followers</span>
-		</div>
+		<Panel className="userinfo-panel">
+			<Panel.Body className="userinfo-body">
+			  <Image className="userinfo-banner" src={props.userinfo[0].banner_img_url} thumbnail />
+			  <div className="userinfo-userfields">
+				  <a href="#" className="userinfo-username">@{props.userinfo[0].username}</a>
+					<div>
+			      <a href="#" className="userinfo-display-name">{props.userinfo[0].display_name}</a>
+					</div>
+					<p className="userinfo-bio-text">{props.userinfo[0].bio_text}</p>
+				</div>
+			</Panel.Body>
+			<Panel.Footer className="userinfo-footer">
+			  <div className="userinfo-stats">
+			    <span className="userinfo-statlabel">Squeaks</span>
+			    <span className="userinfo-statlabel">Following</span>
+			    <span className="userinfo-statlabel">Followers</span>
+			    <span className="userinfo-statvalue">
+			      <a href="#" className="userinfo-statvalue-link">123</a>
+			    </span>
+			    <span className="userinfo-statvalue">
+			    <a href="#" className="userinfo-statvalue-link">456</a>
+			    </span>
+			    <span className="userinfo-statvalue">
+			    <a href="#" className="userinfo-statvalue-link">947</a>
+			    </span>
+			  </div>
+			</Panel.Footer>
+		</Panel>
 	)
 };
 
 export default UserInfo;
-
-// test

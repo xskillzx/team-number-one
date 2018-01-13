@@ -10,7 +10,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userinfo: [],
+      userinfo: [{}],
       inputValue: '',
       squeaks: [{
         username: 'Moisays',
@@ -40,6 +40,7 @@ class App extends React.Component {
     }
 
     $.ajax(settings).done(data => {
+      console.log(data);
       this.setState({userinfo: data});
     });
   }
@@ -59,7 +60,7 @@ class App extends React.Component {
           searchHandler={this.searchHandler.bind(this)}
           onChangeHandler={this.onInputChangeHandler.bind(this)}/>
         <Switch>
-          <Route exact path="/" render={props => (<HomePage/>)}/>
+          <Route exact path="/" render={props => (<HomePage userinfo={this.state.userinfo}/>)}/>
           <Route path="/search" render={props => (<SearchPage {...props.location}/>)}/>
           <Route path="/login" render={props => (<span>Login Page</span>)}/>
           <Route path="/:username" render={props => (<HomePage username={props.match.params.username}/>)}/>

@@ -22,6 +22,10 @@ body {
 	text-align: center;
 }
 
+a:hover {
+	text-decoration: none;
+}
+
 #app,
 #reactapp {
 	height: 100%;
@@ -74,4 +78,81 @@ body {
 
 .media-heading {
 	font-size: 14px;
+}
+
+.panel-body {
+	padding: 0px;
+}
+
+.userinfo-banner {
+	padding: 0px;
+}
+
+.navbar-default .navbar-brand,
+a.navbar-brand,
+.btn-default {
+	color: #88A550;
+}
+
+.userinfo-statlabel,
+.userinfo-statvalue {
+	color: #88A550;
+	display: inline-block;
+	font-size: 12px;
+	height: 16px;
+	width: 68px;
+}
+
+.userinfo-statvalue-link {
+	color: #88A550;
+}
+
+.userinfo-statvalue-link:visited {
+	color: #88A550;
+}
+
+.userinfo-statvalue-link:hover {
+	color: #FBCD4B;
+}
+
+.userinfo-stats {
+	padding: 10px;
+}
+
+.userinfo-footer {
+	background-color: #282623;
+	padding: 0px;
+}
+
+.userinfo-body {
+	background-color: #A3A599;
+	color: #FBCD4B;
+}
+
+.userinfo-username,
+.userinfo-display-name {
+	color: #FBCD4B;
+}
+
+.userinfo-username:visited,
+.userinfo-display-name:visited {
+	color: #FBCD4B;
+}
+
+.userinfo-username:hover,
+.userinfo-display-name:hover {
+	color: #88A550;
+}
+
+.userinfo-username {
+	font-size: 18px;
+	font-weight: 700;
+}
+
+.userinfo-display-name {
+	font-size: 14px;
+}
+
+.userinfo-bio-text {
+	font-size: 12px;
 }
