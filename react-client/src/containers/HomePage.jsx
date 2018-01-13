@@ -51,7 +51,7 @@ class HomePage extends React.Component {
       <Grid>
         <Col className="col-md-3 show-box show-grid">
           <Row className="show-box">
-            <UserInfo />
+            <UserInfo userinfo={this.props.userinfo}/>
           </Row>
           <Row className="show-box">
             <h3>TRENDING</h3>

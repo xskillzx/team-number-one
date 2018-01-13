@@ -70,3 +70,17 @@ body {
 .media-heading {
 	font-size: 14px;
 }
+
+.panel-body {
+	padding: 0px;
+}
+
+.userinfo-banner {
+	padding: 0px;
+}
+
+.navbar-default .navbar-brand,
+a.navbar-brand,
+.btn-default {
+	color: #88A550;
+}
