@@ -12,17 +12,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       userinfo: [{}],
-      inputValue: '',
-      squeaks: [{
-        username: 'Moisays',
-        displayName: 'MoisesM',
-        text: 'things are awesome'
-      },
-      {
-        username: 'FelIs',
-        displayName: 'Feli Catania',
-        text: 'coding is cool I guess'
-      }]
+      inputValue: ''
     };
   }
 
@@ -79,5 +69,3 @@ ReactDOM.render(
     <App />
   </BrowserRouter>, document.getElementById('app')
 );
-
-// test
