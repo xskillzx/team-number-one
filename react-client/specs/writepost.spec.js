@@ -4,7 +4,7 @@ import { shallow, mount } from 'enzyme';
 import WritePost from '../src/components/WritePost.jsx';
 
 describe('Test WritePost', () => {
-  it('WritePost\'s Post button should call the passed in function', () => {
+  xit('WritePost\'s Post button should call the passed in function', () => {
     let mockWritePostHandler = jest.fn();
     const writepost = shallow(<WritePost
       writePostValue='not important here'
@@ -14,7 +14,7 @@ describe('Test WritePost', () => {
     expect(mockWritePostHandler.mock.calls.length).toEqual(1);
   });
 
-  it('When WritePost input changes, it should call passed in changeHandler', () => {
+  xit('When WritePost input changes, it should call passed in changeHandler', () => {
     let mockInputChangeHandler = jest.fn();
     const writepost = shallow(<WritePost
       onPostInputChangeHandler={mockInputChangeHandler}
@@ -25,7 +25,7 @@ describe('Test WritePost', () => {
     expect(mockInputChangeHandler.mock.calls.length).toEqual(1);
   });
 
-  it('When hitting enter in the input, the post handler should be called', () => {
+  xit('When hitting enter in the input, the post handler should be called', () => {
     let mockInputChangeHandler = jest.fn();
     const writepost = shallow(<WritePost
       writePostHandler={mockInputChangeHandler}

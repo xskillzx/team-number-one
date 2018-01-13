@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const NavBar = ({ shouldReplace, inputValue, searchHandler, onChangeHandler }) => {
   return (
-    <Navbar>
+    <Navbar fixedTop>
       <Navbar.Header>
         <Navbar.Brand>
           <Link to="/" replace={shouldReplace}>Squeaker</Link>
