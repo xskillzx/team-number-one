@@ -12,13 +12,13 @@ if (process.env.JAWSDB_URL) {
 
 let searchUsers = function(searchQuery, loggedUserId, cb) {
   connection.query(`SELECT users.*, IF(follows.follower_id = ${loggedUserId}, 1, 0) AS is_followed FROM users LEFT JOIN follows ON followed_id = users.id WHERE users.username LIKE '%${searchQuery}%' OR users.display_name LIKE '%${searchQuery}%'`, (err, results) => {
-    err ? cb(err, null) : cb(null, results);
+    err ? cb(err) : cb(null, results);
   });
 };
 
 let writePost = function(squeak, cb) {
   connection.query(`INSERT INTO squeaks (user_id, text) VALUES (${squeak.userId}, '${squeak.text}')`, (err, results) => {
-    err ? cb(err, null) : cb(null, results);
+    err ? cb(err) : cb(null, results);
   });
 };
 
@@ -41,13 +41,13 @@ let allSqueaks = function(id, cb) {
 
 let followUser = function(followerId, followedId, cb) {
   connection.query(`INSERT INTO follows (follower_id, followed_id) VALUES (${followerId}, ${followedId})`, (err, results) => {
-    err ? cb(err, null) : cb(null, results);
+    err ? cb(err) : cb(null, results);
   });
 };
 
 let unfollowUser = function(followerId, followedId, cb) {
   connection.query(`DELETE FROM follows WHERE follower_id = ${followerId} AND followed_id = ${followedId}`, (err, results) => {
-    err ? cb(err, null) : cb(null, results);
+    err ? cb(err) : cb(null, results);
   });
 };
 
