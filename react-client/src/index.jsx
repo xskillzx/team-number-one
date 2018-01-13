@@ -4,6 +4,7 @@ import { BrowserRouter, Switch, Route, withRouter } from 'react-router-dom';
 import NavBar from './components/NavBar.jsx';
 import SearchPage from './containers/SearchPage.jsx';
 import HomePage from './containers/HomePage.jsx';
+import UserPage from './containers/UserPage.jsx';
 import $ from 'jquery';
 
 class App extends React.Component {
@@ -64,7 +65,7 @@ class App extends React.Component {
           <Route exact path="/" render={props => (<HomePage userinfo={this.state.userinfo}/>)}/>
           <Route path="/search" render={props => (<SearchPage {...props.location}/>)}/>
           <Route path="/login" render={props => (<span>Login Page</span>)}/>
-          <Route path="/:username" render={props => (<HomePage username={props.match.params.username}/>)}/>
+          <Route path="/:username" render={props => (<UserPage username={props.match.params.username}/>)}/>
         </Switch>
       </div>
     );
