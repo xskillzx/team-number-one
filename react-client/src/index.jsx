@@ -52,6 +52,8 @@ class App extends React.Component {
     return (
       <div id="reactapp">
         <NavBar
+          fixedTop="true"
+          className="squeaker-nav"
           shouldReplace={this.props.location.pathname === '/'}
           inputValue={this.state.inputValue}
           searchHandler={this.searchHandler.bind(this)}
@@ -74,3 +76,5 @@ ReactDOM.render(
     <App />
   </BrowserRouter>, document.getElementById('app')
 );
+
+// test

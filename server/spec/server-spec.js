@@ -65,6 +65,4 @@ describe('Persistent Node Squeaker Server', function() {
 			done();
 		});
 	});
-});
-
-// tes
+});// tes
