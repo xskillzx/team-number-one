@@ -19,15 +19,17 @@ const UserInfo = function(props) {
 			    <span className="userinfo-statlabel">Squeaks</span>
 			    <span className="userinfo-statlabel">Following</span>
 			    <span className="userinfo-statlabel">Followers</span>
-			    <span className="userinfo-statvalue">
-			      <a href="#" className="userinfo-statvalue-link">123</a>
-			    </span>
-			    <span className="userinfo-statvalue">
-			    <a href="#" className="userinfo-statvalue-link">456</a>
-			    </span>
-			    <span className="userinfo-statvalue">
-			    <a href="#" className="userinfo-statvalue-link">947</a>
-			    </span>
+			    <div>
+				    <span className="userinfo-statvalue">
+				      <a href="#" className="userinfo-statvalue-link">123</a>
+				    </span>
+				    <span className="userinfo-statvalue">
+				    <a href="#" className="userinfo-statvalue-link">456</a>
+				    </span>
+				    <span className="userinfo-statvalue">
+				    <a href="#" className="userinfo-statvalue-link">947</a>
+				    </span>
+				  </div>
 			  </div>
 			</Panel.Footer>
 		</Panel>

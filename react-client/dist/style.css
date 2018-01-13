@@ -100,7 +100,7 @@ a.navbar-brand,
 	display: inline-block;
 	font-size: 12px;
 	height: 16px;
-	width: 68px;
+	width: 33.3%;
 }
 
 .userinfo-statvalue-link {
@@ -155,4 +155,32 @@ a.navbar-brand,
 
 .userinfo-bio-text {
 	font-size: 12px;
+}
+
+.post {
+	height: 58px;
+	padding: 10px 12px;
+	width: 100%;
+}
+
+.post-userimage {
+	height: 40px;
+	width: 40px;
+}
+
+.post-squeakinput {
+	color: #FBCD4B;
+	height: 36px;
+	margin-left: 20px;
+	max-width: 506px;
+	text-align: center;
+	width: 85%;
+}
+
+.post-squeakinput:focus {
+	outline-color: #88A550;
+}
+
+.squeakfeed {
+
 }

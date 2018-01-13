@@ -49,35 +49,27 @@ class HomePage extends React.Component {
   render() {
     return (
       <Grid>
-        <Col className="col-md-3 show-box show-grid">
-          <Row className="show-box">
+        <Col sm={4} lg={3} className="">
+          <div className="dashboard dashboard-left">
             <UserInfo userinfo={this.props.userinfo}/>
-          </Row>
-          <Row className="show-box">
-            <h3>TRENDING</h3>
-          </Row>
+          </div>
         </Col>
-        <Col className="col-md-6 show-box show-grid">
-          <Row className="show-box">
-            <div className="home">
-              <WritePost
-                writePostValue={this.state.writePostValue}
-                onPostInputChangeHandler={this.onPostInputChangeHandler.bind(this)}
-                writePostHandler={this.writePostHandler.bind(this)}
-              />
-            </div>
-          </Row>
-          <Row className="show-box">
+        <Col sm={8} lg={6} className="squeakfeed">
+          <div className="dashboard dashboard-center">
+            <WritePost
+              userimage={this.props.userinfo[0].profile_img_url}
+              writePostValue={this.state.writePostValue}
+              onPostInputChangeHandler={this.onPostInputChangeHandler.bind(this)}
+              writePostHandler={this.writePostHandler.bind(this)}
+            />
             <Feed squeaks={this.state.squeaks}/>
-          </Row>
+          </div>
         </Col>
-        <Col className="col-md-3 show-box show-grid">
-          <Row className="show-box">
+        <Col lg={3} mdHidden smHidden xsHidden className="">
+          <div className="dashboard dashboard-right">
             <h3>WHO TO FOLLOW</h3>
-          </Row>
-          <Row className="show-box">
             <h3>BOTTOM NAV</h3>
-          </Row>
+          </div>
         </Col>
       </Grid>
     );
