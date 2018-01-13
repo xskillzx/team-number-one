@@ -26,8 +26,8 @@ app.get('/api/userinfo/:id', (req, res) => {
 	});
 });
 
-app.get('/api/fulluserinfo/:id', (req, res) => {
-  db.fullUserInfo(Number(req.params.id), (err, results) => {
+app.get('/api/fulluserinfo/:username', (req, res) => {
+  db.fullUserInfo(req.params.username, (err, results) => {
     err ? res.send(err) : res.send(results);
   })
 });;
