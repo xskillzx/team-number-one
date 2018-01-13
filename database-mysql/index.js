@@ -28,6 +28,46 @@ let userInfo = function(id, cb) {
 	});
 };
 
+let userSqueaks = function(id, cb) {
+  connection.query(`SELECT * FROM squeaks WHERE user_id = ${id}`, (err, results) => {
+    err ? cb(err) : cb(null, results);
+  });
+}
+
+let userFollowers = function(id, cb) {
+  connection.query(`SELECT users.* FROM users, follows WHERE users.id = follows.follower_id AND follows.followed_id = ${id}`, (err, results) => {
+    err ? cb(err) : cb(null, results);
+  });
+}
+
+let userFollowing = function(id, cb) {
+  connection.query(`SELECT users.* FROM users, follows WHERE users.id = follows.followed_id AND follows.follower_id = ${id}`, (err, results) => {
+    err ? cb(err) : cb(null, results);
+  });
+}
+
+// TODO: refactor to Promises to avoid callback hell
+let fullUserInfo = function(id, cb) {
+  let finalResults = {};
+  userInfo(id, (err, results) => {
+    if (err) return cb(err);
+    finalResults = results[0];
+    userSqueaks(id, (err, results) => {
+      if (err) return cb(err);
+      finalResults.squeaks = results;
+      userFollowers(id, (err, results) => {
+        if (err) return cb(err);
+        finalResults.followers = results;
+        userFollowing(id, (err, results) => {
+          if (err) return cb(err);
+          finalResults.following = results;
+          cb(null, finalResults);
+        })
+      })
+    });
+  });
+};
+
 // should eventually grab all squeaks of current user and those being 'followed'
 // until follow functionality is built all squeaks will be returned
 let allSqueaks = function(id, cb) {
@@ -68,3 +108,4 @@ module.exports.allSqueaks = allSqueaks;
 module.exports.followUser = followUser;
 module.exports.unfollowUser = unfollowUser;
 module.exports.topFollowed = topFollowed;
+module.exports.fullUserInfo = fullUserInfo;
