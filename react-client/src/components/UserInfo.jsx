@@ -6,7 +6,11 @@ const UserInfo = function(props) {
 		<Panel>
 			<Panel.Body>
 			  <Image className="userinfo-banner" src={props.userinfo[0].banner_img_url} thumbnail />
-			  <h4>{props.userinfo[0].username}</h4>
+			  <div className="userinfo-userfields">
+				  <a href="#" className="userinfo-username">@{props.userinfo[0].username}</a>
+				  <a href="#" className="userinfo-display-name">{props.userinfo[0].display_name}</a>
+				</div>
+			  
 			</Panel.Body>
 			<Panel.Footer>Panel footer</Panel.Footer>
 		</Panel>
@@ -25,12 +29,3 @@ export default UserInfo;
 			<span>Following</span>
 			<span>Followers</span>
 		</div>*/
-
-					//   {
-			  //   props.userinfo.length ?
-			  //   <div>
-			  //   <Image src={props.userinfo.banner_img_url} thumbnail />
-			  //   <h4>{props.userinfo.display_name}</h4>
-			  //   </div>
-			  //   : null
-			  // }
