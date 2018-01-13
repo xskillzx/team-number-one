@@ -75,7 +75,6 @@ describe('Persistent Node Squeaker Server', function() {
 			done();
 		});
 	});
-});
 
 	// TODO: enable test by removing the x.
 	// Find out which is the correct uri/path for travis testing and heroku
@@ -96,4 +95,4 @@ describe('Persistent Node Squeaker Server', function() {
 			done();
 		});
 	});
-};// tes
+});// tes
