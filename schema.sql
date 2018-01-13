@@ -33,7 +33,7 @@ CREATE TABLE `squeaks` (
   `id` INTEGER NOT NULL AUTO_INCREMENT,
   `user_id` INTEGER NOT NULL,
   `text` VARCHAR(70) DEFAULT NULL,
-  `created_at` DATETIME DEFAULT NULL,
+  `created_at` TIMESTAMP NOT NULL DEFAULT now(),
   `resqueak_id` INTEGER NULL,
   PRIMARY KEY (`id`)
 );
@@ -62,7 +62,7 @@ CREATE TABLE `replies` (
   `squeak_id` INTEGER NOT NULL,
   `user_id` INTEGER NOT NULL,
   `text` VARCHAR(70) DEFAULT NULL,
-  `created_at` DATETIME DEFAULT NULL,
+  `created_at` TIMESTAMP NOT NULL DEFAULT now(),
   PRIMARY KEY (`id`)
 );
 -- ---
@@ -101,11 +101,11 @@ ALTER TABLE `follows` ADD FOREIGN KEY (followed_id) REFERENCES `users` (`id`);
 -- ---
 INSERT INTO `users` (`username`,`display_name`,`bio_text`,`profile_img_url`,`banner_img_url`) VALUES
 ('shockway','Moises Munoz','Im big and tall and win it all.. my mom loves me','https://i.pinimg.com/736x/08/61/b7/0861b76ad6e3b156c2b9d61feb6af864--facebook-profile-profile-pictures.jpg','https://i.pinimg.com/564x/d7/9e/0b/d79e0b1db7d93379c3f893e00c2d51ed.jpg'), ('Chestnutt da Bestnutt','Henry Chestnutt','This beard, you like?','http://4.bp.blogspot.com/-OfEfbyWGCg0/Vfh9WpUu6HI/AAAAAAAABHk/U28qdodeMuM/s1600/henry-cavill-by-patrik-giardino-for-men-s-health-magazine-september-2015-issue_08.jpg','https://i.pinimg.com/564x/87/6f/5b/876f5b43e487624f77a5efee8977307c.jpg'), ('J.Y.','Justin Yoo','You think you can keep up? PUH-LEES','https://s-media-cache-ak0.pinimg.com/originals/1c/7d/81/1c7d8155812aa3a770b93af5ab282413.jpg','https://i.pinimg.com/564x/77/16/51/771651478e08aa05468869af275fda9f.jpg'), ('F to da C','Felipe Catania','Brb learning a new technology in 5 minutes','https://i.pinimg.com/736x/3f/08/d6/3f08d6f20a359e59325de91aa1da433e--hot-beards-face-hair.jpg','https://i.pinimg.com/564x/b3/9f/d8/b39fd8fd5ac2e8c25938e2fd1783d016.jpg');
-INSERT INTO `squeaks` (`user_id`,`text`,`created_at`) VALUES
-('1','DID THIS WORK?!','2018-01-10 21:30:11'), ('2', 'Hi mom!', '2018-01-10 21:30:55');
+INSERT INTO `squeaks` (`user_id`,`text`) VALUES
+('1','DID THIS WORK?!'), ('2', 'Hi mom!');
 -- INSERT INTO `users_squeaks` (`id`,`user_id`,`squeak_id`,`is_liked`,`is_favorited`) VALUES
 -- ('','','','','');
-INSERT INTO `replies` (`squeak_id`,`user_id`,`text`,`created_at`) VALUES
-('1','1','YES I THINK SO!!','2018-01-10 21:31:11');
+INSERT INTO `replies` (`squeak_id`,`user_id`,`text`) VALUES
+('1','1','YES I THINK SO!!');
 -- INSERT INTO `follows` (`id`,`follower_id`,`followed_id`) VALUES
 -- ('','','');

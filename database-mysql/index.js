@@ -17,8 +17,7 @@ let searchUsers = function(searchQuery, cb) {
 };
 
 let writePost = function(squeak, cb) {
-  let createdAt = (new Date()).toISOString().substring(0, 19).replace('T', ' ');
-  connection.query(`INSERT INTO squeaks (user_id, text, created_at) VALUES (${squeak.userId}, '${squeak.text}', '${createdAt}')`, (err, results) => {
+  connection.query(`INSERT INTO squeaks (user_id, text) VALUES (${squeak.userId}, '${squeak.text}')`, (err, results) => {
     err ? cb(err, null) : cb(null, results);
   });
 };
@@ -34,7 +33,8 @@ let userInfo = function(id, cb) {
 let allSqueaks = function(id, cb) {
   connection.query(`SELECT squeaks.id, squeaks.text, squeaks.created_at, users.username, users.display_name, users.profile_img_url 
                     FROM squeaks INNER JOIN users 
-                    WHERE squeaks.user_id = users.id`, (err, results) => {
+                    WHERE squeaks.user_id = users.id
+                    ORDER BY squeaks.created_at DESC`, (err, results) => {
     err ? cb(err) : cb(null, results);
   });
 };
