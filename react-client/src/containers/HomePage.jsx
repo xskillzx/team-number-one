@@ -23,7 +23,7 @@ class HomePage extends React.Component {
       contentType: 'application/json'
     }
     $.ajax(settings).done(data => {
-      this.setState({squeaks: data}, () => console.log(this.state.squeaks));
+      this.setState({squeaks: data});
     });
   }
 
