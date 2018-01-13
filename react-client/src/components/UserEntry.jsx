@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image, Button, Col, Panel } from 'react-bootstrap';
 
-const UserEntry = ({ id, username, display_name, bio_text, profile_img_url }) => (
+const UserEntry = ({ id, username, display_name, bio_text, profile_img_url, is_followed, followHandler, unfollowHandler }) => (
   <Col xs={4}>
     <Panel>
       <Panel.Body>
@@ -10,7 +10,7 @@ const UserEntry = ({ id, username, display_name, bio_text, profile_img_url }) =>
       <Panel.Footer className="user-footer">
         <h6>@{username}</h6>
         <p>{bio_text}</p>
-        <Button bsStyle="primary">Follow</Button>
+        {is_followed ? <Button bsStyle="primary" onClick={e => unfollowHandler(id)}>Unfollow</Button> : <Button bsStyle="primary" onClick={e => followHandler(id)}>Follow</Button>}
       </Panel.Footer>
     </Panel>
   </Col>
