@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Switch, Route, withRouter } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, withRouter, Redirect } from 'react-router-dom';
 import NavBar from './components/NavBar.jsx';
 import SearchPage from './containers/SearchPage.jsx';
 import HomePage from './containers/HomePage.jsx';
@@ -28,6 +28,11 @@ class App extends React.Component {
         text: 'coding is cool I guess'
       }]
     };
+  }
+
+
+  loggedIn() {
+    return this.state.loggedIn;
   }
 
   searchHandler() {
@@ -83,15 +88,23 @@ class App extends React.Component {
           userpic={this.state.userinfo[0].profile_img_url}
         />
         <Switch>
-          <Route exact path="/" render={props => (<HomePage counts={this.state.counts} userinfo={this.state.userinfo} />)}/>
-          <Route path="/search" render={props => (<SearchPage userinfo={this.state.userinfo} counts={this.state.counts} {...props.location}/>)}/>
-          <Route path="/login" render={props => (<span>Login Page</span>)}/>
-          <Route path="/:username" render={props => (<UserPage username={props.match.params.username}/>)}/>
+          {/* <Route exact path="/" render={props => (<HomePage/>)}/> */}
+          <Route exact path="/" render={props => (
+            this.state.loggedIn ? (
+              <Redirect to="/login"/>
+            ) : (
+              <HomePage/>
+            )
+          )}/>
+          <Route path="/search" render={props => (<SearchPage {...props.location}/>)}/>
+          <Route path="/login" render={props => (<LoginPage/>)}/>
+          <Route path="/:username" render={props => (<HomePage username={props.match.params.username}/>)}/>
         </Switch>
       </div>
     );
   }
 }
+
 
 App = withRouter(App);
 
@@ -100,3 +113,4 @@ ReactDOM.render(
     <App />
   </BrowserRouter>, document.getElementById('app')
 );
+

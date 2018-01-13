@@ -1,7 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
 import { Grid, Row, Col } from 'react-bootstrap';
-import Login from '../components/Login.jsx';
+import SignIn from '../components/SignIn.jsx';
 import SignUp from '../components/SignUp.jsx';
 
 class LoginPage extends React.Component {
@@ -13,12 +13,12 @@ class LoginPage extends React.Component {
     return (
       <Grid>
         <Col className="col-md-3 show-box show-grid">
-          <Row className="login">
-            <Login />
+          <Row className="sign-in">
+            <SignIn />
           </Row>
         </Col>
         <Col className="col-md-3 show-box show-grid">
-          <Row className="signup">
+          <Row className="sign-up">
             <SignUp />
           </Row>
         </Col>

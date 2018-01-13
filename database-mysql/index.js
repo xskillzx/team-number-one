@@ -23,9 +23,9 @@ let writePost = function(squeak, cb) {
 };
 
 let userInfo = function(id, cb) {
-	connection.query(`SELECT * FROM users WHERE id = ${id}`, (err, results) => {
-		err ? cb(err) : cb(null, results);
-	});
+  connection.query(`SELECT * FROM users WHERE id = ${id}`, (err, results) => {
+    err ? cb(err) : cb(null, results);
+  });
 };
 
 let userInfoByUsername = function(username, cb) {
@@ -100,8 +100,16 @@ let allSqueaks = function(id, cb) {
                     FROM squeaks INNER JOIN users 
                     WHERE squeaks.user_id = users.id
                     ORDER BY squeaks.created_at DESC`, (err, results) => {
-    err ? cb(err) : cb(null, results);
-  });
+      err ? cb(err) : cb(null, results);
+    });
+};
+
+let createUser = function(username, pw, cb) {
+  
+};
+
+let logIn = function(username, pw, cb) {
+  
 };
 
 let followUser = function(followerId, followedId, cb) {
@@ -135,3 +143,5 @@ module.exports.unfollowUser = unfollowUser;
 module.exports.topFollowed = topFollowed;
 module.exports.fullUserInfo = fullUserInfo;
 module.exports.userCounts = userCounts;
+module.exports.createUser = createUser;
+module.exports.logIn = logIn;
