@@ -28,6 +28,12 @@ let userInfo = function(id, cb) {
 	});
 };
 
+let userInfoByUsername = function(username, cb) {
+	connection.query(`SELECT * FROM users WHERE username = '${username}'`, (err, results) => {
+		err ? cb(err) : cb(null, results);
+	});
+};
+
 let userSqueaks = function(id, cb) {
   connection.query(`SELECT * FROM squeaks WHERE user_id = ${id}`, (err, results) => {
     err ? cb(err) : cb(null, results);
@@ -47,18 +53,19 @@ let userFollowing = function(id, cb) {
 }
 
 // TODO: refactor to Promises to avoid callback hell
-let fullUserInfo = function(id, cb) {
+let fullUserInfo = function(username, cb) {
   let finalResults = {};
-  userInfo(id, (err, results) => {
+  userInfoByUsername(username, (err, results) => {
     if (err) return cb(err);
+    if (results.length === 0) return cb(err);
     finalResults = results[0];
-    userSqueaks(id, (err, results) => {
+    userSqueaks(finalResults.id, (err, results) => {
       if (err) return cb(err);
       finalResults.squeaks = results;
-      userFollowers(id, (err, results) => {
+      userFollowers(finalResults.id, (err, results) => {
         if (err) return cb(err);
         finalResults.followers = results;
-        userFollowing(id, (err, results) => {
+        userFollowing(finalResults.id, (err, results) => {
           if (err) return cb(err);
           finalResults.following = results;
           cb(null, finalResults);
