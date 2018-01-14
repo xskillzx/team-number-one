@@ -1,18 +1,21 @@
 import React from 'react';
-import { Navbar, FormGroup, FormControl, Button } from 'react-bootstrap';
+import { Navbar, FormGroup, FormControl, Button, Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-const NavBar = ({ shouldReplace, inputValue, searchHandler, onChangeHandler }) => {
+const NavBar = ({ shouldReplace, inputValue, searchHandler, onChangeHandler, userpic }) => {
   return (
     <Navbar fixedTop>
+      <a href="#" className="navbar-left"><Image src="./pretty_logo.jpg" className="nav-logo" circle /></a>
       <Navbar.Header>
         <Navbar.Brand>
-          <Link to="/" replace={shouldReplace}>Squeaker</Link>
+          <Link to="/" replace={shouldReplace}>
+            Squeaker
+          </Link>
         </Navbar.Brand>
         <Navbar.Toggle />
       </Navbar.Header>
-      <Navbar.Collapse>
-        <Navbar.Form pullRight>
+      <Navbar.Collapse className="navbar-right">
+        <Navbar.Form>
           <FormGroup>
             <FormControl
               type="text"
@@ -25,6 +28,7 @@ const NavBar = ({ shouldReplace, inputValue, searchHandler, onChangeHandler }) =
           </FormGroup>
           <Button type="submit" onClick={searchHandler}>Go</Button>
         </Navbar.Form>
+        <a href="#" className="navbar-right"><Image src={userpic} className="nav-logo" circle /></a>
       </Navbar.Collapse>
     </Navbar>
   );
