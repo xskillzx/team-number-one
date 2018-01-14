@@ -13,7 +13,7 @@ class HomePage extends React.Component {
     this.state = {
       writePostValue: '',
       squeaks: [],
-      topfollowed: [{}]
+      topFollowed: []
     };
   }
 
@@ -41,7 +41,7 @@ class HomePage extends React.Component {
     }
     $.ajax(settings).done(data => {
       console.log(data);
-      this.setState({ topfollowed: data });
+      this.setState({ topFollowed: data });
     });
   }
 
@@ -81,7 +81,7 @@ class HomePage extends React.Component {
         </Col>
         <Col lg={3} mdHidden smHidden xsHidden className="">
           <div className="dashboard dashboard-right">
-            <WhoToFollow top={this.state.topfollowed}/>
+            <WhoToFollow top={this.state.topFollowed}/>
             <h3>BOTTOM NAV</h3>
           </div>
         </Col>

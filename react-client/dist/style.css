@@ -254,3 +254,7 @@ a.navbar-brand,
 .nav-tabs>li>a {
 	color: #88A550;
 }
+.carousel-pics {
+	height: 20px;
+	width: 100%;
+}
