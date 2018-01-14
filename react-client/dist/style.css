@@ -221,3 +221,8 @@ a.navbar-brand,
 	background-color: #282623;
 	color: #88A550;
 }
+
+.carousel-pics {
+	height: 20px;
+	width: 100%;
+}
