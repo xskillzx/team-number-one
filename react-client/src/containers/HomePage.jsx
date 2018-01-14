@@ -17,8 +17,7 @@ class HomePage extends React.Component {
     };
   }
 
-  componentDidMount(id) {
-    // i want all the squeaks created by user and 'following'
+  componentDidMount() {
     this.getAllSqueaks();
     this.getTopFollowed();
   }
@@ -48,7 +47,7 @@ class HomePage extends React.Component {
 
   writePostHandler() {
     axios.post('/api/writepost', {
-      userId: 2, //TODO Fix when props are passed
+      userId: 1, // TODO: Fix when login feature is implemented
       text: this.state.writePostValue
     }).then(response => {
       this.getAllSqueaks();

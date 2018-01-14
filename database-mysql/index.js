@@ -12,13 +12,13 @@ if (process.env.JAWSDB_URL) {
 
 let searchUsers = function(searchQuery, loggedUserId, cb) {
   connection.query(`SELECT users.*, IF(follows.follower_id = ${loggedUserId}, 1, 0) AS is_followed FROM users LEFT JOIN follows ON followed_id = users.id WHERE users.username LIKE '%${searchQuery}%' OR users.display_name LIKE '%${searchQuery}%'`, (err, results) => {
-    err ? cb(err, null) : cb(null, results);
+    err ? cb(err) : cb(null, results);
   });
 };
 
 let writePost = function(squeak, cb) {
   connection.query(`INSERT INTO squeaks (user_id, text) VALUES (${squeak.userId}, '${squeak.text}')`, (err, results) => {
-    err ? cb(err, null) : cb(null, results);
+    err ? cb(err) : cb(null, results);
   });
 };
 
@@ -26,6 +26,53 @@ let userInfo = function(id, cb) {
 	connection.query(`SELECT * FROM users WHERE id = ${id}`, (err, results) => {
 		err ? cb(err) : cb(null, results);
 	});
+};
+
+let userInfoByUsername = function(username, cb) {
+	connection.query(`SELECT * FROM users WHERE username = '${username}'`, (err, results) => {
+		err ? cb(err) : cb(null, results);
+	});
+};
+
+let userSqueaks = function(id, cb) {
+  connection.query(`SELECT * FROM squeaks WHERE user_id = ${id}`, (err, results) => {
+    err ? cb(err) : cb(null, results);
+  });
+}
+
+let userFollowers = function(id, cb) {
+  connection.query(`SELECT users.* FROM users, follows WHERE users.id = follows.follower_id AND follows.followed_id = ${id}`, (err, results) => {
+    err ? cb(err) : cb(null, results);
+  });
+}
+
+let userFollowing = function(id, cb) {
+  connection.query(`SELECT users.* FROM users, follows WHERE users.id = follows.followed_id AND follows.follower_id = ${id}`, (err, results) => {
+    err ? cb(err) : cb(null, results);
+  });
+}
+
+// TODO: refactor to Promises to avoid callback hell
+let fullUserInfo = function(username, cb) {
+  let finalResults = {};
+  userInfoByUsername(username, (err, results) => {
+    if (err) return cb(err);
+    if (results.length === 0) return cb(err);
+    finalResults = results[0];
+    userSqueaks(finalResults.id, (err, results) => {
+      if (err) return cb(err);
+      finalResults.squeaks = results;
+      userFollowers(finalResults.id, (err, results) => {
+        if (err) return cb(err);
+        finalResults.followers = results;
+        userFollowing(finalResults.id, (err, results) => {
+          if (err) return cb(err);
+          finalResults.following = results;
+          cb(null, finalResults);
+        })
+      })
+    });
+  });
 };
 
 // should eventually grab all squeaks of current user and those being 'followed'
@@ -41,13 +88,13 @@ let allSqueaks = function(id, cb) {
 
 let followUser = function(followerId, followedId, cb) {
   connection.query(`INSERT INTO follows (follower_id, followed_id) VALUES (${followerId}, ${followedId})`, (err, results) => {
-    err ? cb(err, null) : cb(null, results);
+    err ? cb(err) : cb(null, results);
   });
 };
 
 let unfollowUser = function(followerId, followedId, cb) {
   connection.query(`DELETE FROM follows WHERE follower_id = ${followerId} AND followed_id = ${followedId}`, (err, results) => {
-    err ? cb(err, null) : cb(null, results);
+    err ? cb(err) : cb(null, results);
   });
 };
 
@@ -68,3 +115,4 @@ module.exports.allSqueaks = allSqueaks;
 module.exports.followUser = followUser;
 module.exports.unfollowUser = unfollowUser;
 module.exports.topFollowed = topFollowed;
+module.exports.fullUserInfo = fullUserInfo;
