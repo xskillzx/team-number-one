@@ -66,8 +66,8 @@ class UserPage extends React.Component {
                 <NavItem className="user-page-nav-item" eventKey="followers">Followers</NavItem>
               </Nav>
               {this.state.selectedKey === 'squeaks' && <Feed squeaks={this.state.fullUser.squeaks} user={userForFeed}/>}
-              {this.state.selectedKey === 'following' && <UserList users={this.state.fullUser.following}/>}
-              {this.state.selectedKey === 'followers' && <UserList users={this.state.fullUser.followers}/>}
+              {this.state.selectedKey === 'following' && <UserList users={this.state.fullUser.following} showButton={false}/>}
+              {this.state.selectedKey === 'followers' && <UserList users={this.state.fullUser.followers} showButton={false}/>}
             </Col>
           </Row>
         </Grid>}
