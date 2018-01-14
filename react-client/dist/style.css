@@ -168,7 +168,10 @@ a.navbar-brand,
 }
 
 .post {
+	border: 1px solid #282623;
+	border-radius: 5px;
 	height: 58px;
+	margin-bottom: 10px;
 	padding: 10px 12px;
 	width: 100%;
 }
@@ -187,6 +190,34 @@ a.navbar-brand,
 	width: 85%;
 }
 
-.squeakfeed {
+.navbar>.container .navbar-brand,
+.navbar>.container-fluid .navbar-brand {
+	display: inline;
+  margin-left: 0;
+}
 
+.nav-logo {
+	display: inline-block;
+	height: 40px;
+	margin-left: 15px;
+	margin-top: 5px;
+	width: 40px;
+}
+
+.navbar-form {
+	display: inline-block;
+}
+
+.navbar-right {
+	margin: 0;
+}
+
+.navbar-default,
+.panel-default {
+	border-color: #282623;
+}
+
+.panel-heading.whotofollow-header {
+	background-color: #282623;
+	color: #88A550;
 }

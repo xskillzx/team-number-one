@@ -5,19 +5,22 @@ import UserInfo from '../components/UserInfo.jsx';
 import axios from 'axios';
 import $ from 'jquery';
 import Feed from '../components/Feed.jsx';
+import WhoToFollow from '../components/WhoToFollow.jsx';
 
 class HomePage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       writePostValue: '',
-      squeaks: []
+      squeaks: [],
+      topfollowed: [{}]
     };
   }
 
   componentDidMount(id) {
     // i want all the squeaks created by user and 'following'
     this.getAllSqueaks();
+    this.getTopFollowed();
   }
 
   getAllSqueaks(id) {
@@ -28,6 +31,18 @@ class HomePage extends React.Component {
     }
     $.ajax(settings).done(data => {
       this.setState({squeaks: data});
+    });
+  }
+
+  getTopFollowed() {
+    let settings = {
+      url: '/api/topfollowed',
+      method: 'GET',
+      contentType: 'application/json'
+    }
+    $.ajax(settings).done(data => {
+      console.log(data);
+      this.setState({ topfollowed: data });
     });
   }
 
@@ -67,7 +82,7 @@ class HomePage extends React.Component {
         </Col>
         <Col lg={3} mdHidden smHidden xsHidden className="">
           <div className="dashboard dashboard-right">
-            <h3>WHO TO FOLLOW</h3>
+            <WhoToFollow top={this.state.topfollowed}/>
             <h3>BOTTOM NAV</h3>
           </div>
         </Col>

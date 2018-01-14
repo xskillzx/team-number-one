@@ -37,6 +37,10 @@ app.get('/api/search', (req, res) => {
   });
 });
 
+app.get('/api/topfollowed', (req, res) => {
+  db.topFollowed((err, results) => err ? res.send(err) : res.send(results));
+});
+
 app.post('/api/writepost', (req, res) => {
   db.writePost(req.body, (err, results) => {
     if (err) {

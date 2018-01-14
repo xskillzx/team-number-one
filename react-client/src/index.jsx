@@ -40,7 +40,6 @@ class App extends React.Component {
     }
 
     $.ajax(settings).done(data => {
-      console.log(data);
       this.setState({userinfo: data});
     });
   }
@@ -58,7 +57,9 @@ class App extends React.Component {
           shouldReplace={this.props.location.pathname === '/'}
           inputValue={this.state.inputValue}
           searchHandler={this.searchHandler.bind(this)}
-          onChangeHandler={this.onInputChangeHandler.bind(this)}/>
+          onChangeHandler={this.onInputChangeHandler.bind(this)}
+          userpic={this.state.userinfo[0].profile_img_url}
+        />
         <Switch>
           <Route exact path="/" render={props => (<HomePage userinfo={this.state.userinfo}/>)}/>
           <Route path="/search" render={props => (<SearchPage {...props.location}/>)}/>
