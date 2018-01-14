@@ -1,5 +1,5 @@
 import React from 'react';
-import { Panel, Image } from 'react-bootstrap';
+import { Panel, Image, Carousel } from 'react-bootstrap';
 
 const WhoToFollow = function(props) {
 	return (
@@ -11,8 +11,8 @@ const WhoToFollow = function(props) {
 			</Panel.Heading>
 			<Panel.Body className="whotofollow-body">
 			  <div className="whotofollow-people">
-			    <Carousel>
-			    </Carousel>
+			    {/* <Carousel>
+			    </Carousel> */}
 				</div>
 			</Panel.Body>
 		</Panel>
