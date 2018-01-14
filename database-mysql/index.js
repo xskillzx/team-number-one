@@ -47,7 +47,7 @@ let userFollowers = function(id, cb) {
 }
 
 let userFollowing = function(id, cb) {
-  connection.query(`SELECT users.* FROM users, follows WHERE users.id = follows.followed_id AND follows.follower_id = ${id}`, (err, results) => {
+  connection.query(`SELECT users.*, IF(1, 1, 0) AS is_followed FROM users, follows WHERE users.id = follows.followed_id AND follows.follower_id = ${id}`, (err, results) => {
     err ? cb(err) : cb(null, results);
   });
 }
