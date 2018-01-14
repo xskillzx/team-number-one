@@ -37,6 +37,14 @@ class App extends React.Component {
     }
   }
 
+  signIn() {
+    
+  }
+
+  signUp() {
+
+  }
+
   componentDidMount() {
     this.getUserInfo();
     this.getCounts();

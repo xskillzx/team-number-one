@@ -74,12 +74,12 @@ app.put('/api/unfollow', (req, res) => {
   });
 });
 
-app.post('/sign-in', (req, res) => {
+app.post('/api/sign-in', (req, res) => {
   console.log(req)
   res.end();
 })
 
-app.post('/sign-up', (req, res) => {
+app.post('/api/sign-up', (req, res) => {
   console.log(req);
   res.end();
 })
