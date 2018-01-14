@@ -51,9 +51,20 @@ let unfollowUser = function(followerId, followedId, cb) {
   });
 };
 
+let topFollowed = function(cb) {
+  connection.query(`SELECT followed_id, users.*, COUNT(followed_id) AS followers_count
+                    FROM follows, users
+                    WHERE users.id = follows.followed_id
+                    GROUP BY followed_id
+                    ORDER BY followers_count DESC
+                    LIMIT 5`, 
+                    (err, results) => err ? cb(err) : cb(null, results));
+};
+
 module.exports.searchUsers = searchUsers;
 module.exports.writePost = writePost;
 module.exports.userInfo = userInfo;
 module.exports.allSqueaks = allSqueaks;
 module.exports.followUser = followUser;
 module.exports.unfollowUser = unfollowUser;
+module.exports.topFollowed = topFollowed;

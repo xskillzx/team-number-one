@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const NavBar = ({ shouldReplace, inputValue, searchHandler, onChangeHandler, userpic }) => {
   return (
     <Navbar fixedTop>
-      <a href="#" className="navbar-left"><Image src="./pretty_logo.jpg" className="nav-logo" circle /></a>
+      <a href="#" className="navbar-left"><Image src="pretty_logo.jpg" className="nav-logo" circle /></a>
       <Navbar.Header>
         <Navbar.Brand>
           <Link to="/" replace={shouldReplace}>
