@@ -18,12 +18,22 @@ body {
 	background-image: linear-gradient(to bottom, #FBCD4B 0%, #282623 100%);
 	background-repeat: no-repeat;
 	background-size: 100%;
+	color: #282623;
 	height: 100vh;
 	padding-top: 65px;
 	text-align: center;
 }
 
+a {
+	color: #88A550;
+}
+
+a:visited {
+	color: #88A550;
+}
+
 a:hover {
+	color: #A3A599;
 	text-decoration: none;
 }
 
