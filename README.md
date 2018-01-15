@@ -43,6 +43,7 @@ From within the root directory:
 npm run dev:react
 nodemon server/index.js
 ```
+These lines will make webpack and nodemon watch on changes to restart the server and re-bundle webpack's bundle.js file.
 
 ## Roadmap
 
