@@ -34,7 +34,6 @@
     "react": "^15.6.1",
     "react-bootstrap": "^0.32.0",
     "react-dom": "^15.6.1",
-    "react-native-sound": "^0.10.4",
     "react-router-dom": "^4.2.2",
     "request": "^2.83.0",
     "sinon": "^4.1.4",
