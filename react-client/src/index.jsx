@@ -48,7 +48,6 @@ class App extends React.Component {
     }
     $.ajax(settings).done(data => {
       this.setState({counts: data});
-      console.log(this.state.counts);
     });
   }
 
@@ -65,7 +64,6 @@ class App extends React.Component {
     };
     axios.post('/api/sign-in', signInInfo)
       .then(response => {
-        console.log(response);
         if (response.status === 200) {
           this.getCounts(response.data.id);
           this.setState({loggedIn: 1, userinfo: [response.data]}, () => {
@@ -118,7 +116,7 @@ class App extends React.Component {
               <Redirect to="/login"/>
             )
           )}/>
-          <Route path="/search" render={props => (<SearchPage {...props.location}/>)}/>
+          <Route path="/search" render={props => (<SearchPage {...props.location} userinfo={this.state.userinfo} counts={this.state.counts}/>)}/>
           <Route path="/login" render={props => (<LoginPage signIn ={this.signIn.bind(this)} signUp={this.signUp.bind(this)} userinfo={this.state.userinfo} loggedIn={this.state.loggedIn}/>)}/>
           <Route path="/:username" render={props => (<UserPage username={props.match.params.username}/>)}/>
         </Switch>

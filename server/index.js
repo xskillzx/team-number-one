@@ -40,9 +40,8 @@ app.get('/api/fulluserinfo/:username', (req, res) => {
   })
 });
 
-app.get('/api/search', (req, res) => {
-  // TODO: receive somehow loggedUserId to be able to tell if the users are being followed or not by this user
-  let loggedUserId = 1; // hardcoded
+app.get('/api/:id/search', (req, res) => {
+  let loggedUserId = req.params.id;
   db.searchUsers(req.query.q, loggedUserId, (err, results) => {
     if (err) {
       res.status(500).send(err);
