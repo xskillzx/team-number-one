@@ -37,11 +37,12 @@ class App extends React.Component {
     }
   }
 
-  signIn() {
-    
+  signIn(username, password) {
+    //if successful
+    this.props.history.push('/');
   }
 
-  signUp() {
+  signUp(username, password) {
 
   }
 
@@ -99,7 +100,7 @@ class App extends React.Component {
             )
           )}/>
           <Route path="/search" render={props => (<SearchPage {...props.location}/>)}/>
-          <Route path="/login" render={props => (<LoginPage/>)}/>
+          <Route path="/login" render={props => (<LoginPage signIn={this.signIn.bind(this)} signUp={this.signUp.bind(this)}/>)}/>
           <Route path="/:username" render={props => (<HomePage username={props.match.params.username}/>)}/>
         </Switch>
       </div>

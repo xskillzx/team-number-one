@@ -14,12 +14,12 @@ class LoginPage extends React.Component {
       <Grid>
         <Col className="col-md-3 show-box show-grid">
           <Row className="sign-in">
-            <SignIn />
+            <SignIn signIn={this.props.signIn}/>
           </Row>
         </Col>
         <Col className="col-md-3 show-box show-grid">
           <Row className="sign-up">
-            <SignUp />
+            <SignUp signUp={this.props.signUp}/>
           </Row>
         </Col>
       </Grid>
