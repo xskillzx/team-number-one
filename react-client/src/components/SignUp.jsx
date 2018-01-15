@@ -25,7 +25,7 @@ export default class SignUp extends React.Component {
   }
   render() {
     return (
-      <Form action="/sign-up" method="POST">
+      <Form>
         <FormGroup>
           <Label for="username" hidden>Username</Label>
           <Input type="text" name="uid" id="username-signup" placeholder="Username" value={this.state.username} onChange ={this.handleChangeUsername}/>
@@ -34,7 +34,7 @@ export default class SignUp extends React.Component {
           <Label for="password" hidden>Password</Label>
           <Input type="password" name="pwd" id="password-signup" placeholder="Password" value={this.state.password} onChange={this.handleChangePassword}/>
         </FormGroup>
-        <Button type="submit" id="switch-signup" color="primary">Sign Up</Button>
+        <Button id="switch-signup" color="primary" onClick={this.handleClick}>Sign Up</Button>
       </Form>
     );
   }

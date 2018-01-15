@@ -90,23 +90,12 @@ app.post('/api/sign-up', (req, res) => {
   });
 });
 
-app.post('/api/test', (req, res) => {
-  db.createUser(req.body.username, req.body.password, (err, results) => {
-    if (err) {
-      res.status(400).send('Fucked it up');
-    } else {
-      res.status(200).send('Created');
-    } 
-  });
-});
-
-
 app.post('/api/sign-in', (req, res) => {
   db.logIn(req.body.username, (err, results) => {
     bcrypt.compare(req.body.password, results[0].hw, function(err, resCrypt) {
       if (resCrypt === true) {
         db.fullUserInfo(req.body.username, (err, resUserInfo) => {
-          res.status(303).send(resUserInfo);
+          res.status(200).send(resUserInfo);
         });
       }
       if (resCrypt === false) {

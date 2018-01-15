@@ -7,7 +7,7 @@ import HomePage from './containers/HomePage.jsx';
 import UserPage from './containers/UserPage.jsx';
 import LoginPage from './containers/LoginPage.jsx';
 import $ from 'jquery';
-
+import axios from 'axios';
 
 class App extends React.Component {
   constructor(props) {
@@ -37,30 +37,7 @@ class App extends React.Component {
     }
   }
 
-  signIn(username, password) {
-    //if successful
-    this.props.history.push('/');
-  }
-
-  signUp(username, password) {
-
-  }
-
   componentDidMount() {
-    this.getUserInfo();
-    this.getCounts();
-  }
-
-  getUserInfo(id) {
-    let settings = {
-      url: '/api/userinfo/1',
-      method: 'GET',
-      contentType: "application/json",
-    }
-
-    $.ajax(settings).done(data => {
-      this.setState({userinfo: data});
-    });
   }
 
   getCounts(id) {
@@ -79,6 +56,47 @@ class App extends React.Component {
     this.setState({inputValue: e.target.value});
   }
 
+  
+  signIn(username, password) {
+    //if successful
+    let signInInfo = {
+      "username": username,
+      "password": password
+    };
+    axios.post('/api/sign-in', signInInfo)
+      .then(response => {
+        console.log(response);
+        if (response.status === 200) {
+          this.getCounts();
+          this.setState({loggedIn: 1, userinfo: [response.data]}, () => {
+            this.props.history.push('/');
+          });
+        }
+        if (response.status === 401) {
+          window.alert('Login failed');
+        }
+      })
+      .catch(e => console.error(e));
+  }
+
+  signUp(username, password) {
+    let signUpInfo = {
+      "username": username,
+      "password": password
+    };
+    axios.post('/api/sign-up', signUpInfo)
+      .then(response => {
+        console.log(response);
+        if (response.status === 201) {
+          window.alert('Sign up successful');
+        }
+        if (response.status === 400) {
+          window.alert('Username is taken');
+        }
+      })
+      .catch(e => console.error(e));
+  }
+
   render() {
     return (
       <div id="reactapp">
@@ -92,15 +110,16 @@ class App extends React.Component {
           userpic={this.state.userinfo[0].profile_img_url}
         />
         <Switch>
+          {/* <Route exact path="/" render={props => (<HomePage userinfo={this.state.userinfo} />)}/> */}
           <Route exact path="/" render={props => (
             this.state.loggedIn ? (
-              <HomePage/>
+              <HomePage userinfo={this.state.userinfo} />
             ) : (
               <Redirect to="/login"/>
             )
           )}/>
           <Route path="/search" render={props => (<SearchPage {...props.location}/>)}/>
-          <Route path="/login" render={props => (<LoginPage signIn={this.signIn.bind(this)} signUp={this.signUp.bind(this)}/>)}/>
+          <Route path="/login" render={props => (<LoginPage signIn ={this.signIn.bind(this)} signUp={this.signUp.bind(this)} userinfo={this.state.userinfo} loggedIn={this.state.loggedIn}/>)}/>
           <Route path="/:username" render={props => (<HomePage username={props.match.params.username}/>)}/>
         </Switch>
       </div>
