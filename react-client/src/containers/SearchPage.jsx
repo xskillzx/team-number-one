@@ -54,7 +54,7 @@ class SearchPage extends React.Component {
   render() {
     return (
       <Grid>
-        <Col xsHidden smHidden md={4} ><UserInfo squeakCount={this.props.squeakCount} userinfo={this.props.userinfo} /></Col>
+        <Col xsHidden smHidden md={4} ><UserInfo counts={this.props.counts} userinfo={this.props.userinfo} /></Col>
         <Col xs={12} md={8}>
           <UserList users={this.state.users} followHandler={this.followHandler.bind(this)} unfollowHandler={this.unfollowHandler.bind(this)}/>
         </Col>

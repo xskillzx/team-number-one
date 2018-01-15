@@ -20,8 +20,8 @@ app.get('/api/userinfo/:id/squeaks/all', (req, res) => {
   });
 });
 
-app.get('/api/userinfo/:id/squeaks/count', (req, res) => {
-  db.userSqueaksCount(Number(req.params.id), (err, results) => {
+app.get('/api/userinfo/:id/counts', (req, res) => {
+  db.userCounts(Number(req.params.id), (err, results) => {
     err ? res.send(err) : res.send(results);
   });
 });

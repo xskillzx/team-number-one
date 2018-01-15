@@ -40,9 +40,21 @@ let userSqueaks = function(id, cb) {
   });
 }
 
-let userSqueaksCount = function(id, cb) {
+// TODO: Update id to not be hardcoded when login functionality is ready
+let userCounts = function(id, cb) {
+  let finalResults = {};
   connection.query(`SELECT COUNT (text) FROM squeaks WHERE user_id = ${id}`, (err, results) => {
-    err ? cb(err) : cb(null, results);
+    if (err) cb(err);
+    finalResults.squeakCount = results[0]['COUNT (text)'];
+    userFollowers(1, (err, results) => {
+      if (err) return cb(err);
+      finalResults.followers = results.length;
+      userFollowing(1, (err, results) => {
+        if (err) return cb(err);
+        finalResults.following = results.length;
+        cb(null, finalResults);
+      })
+    })
   });
 }
 
@@ -122,4 +134,4 @@ module.exports.followUser = followUser;
 module.exports.unfollowUser = unfollowUser;
 module.exports.topFollowed = topFollowed;
 module.exports.fullUserInfo = fullUserInfo;
-module.exports.userSqueaksCount = userSqueaksCount;
+module.exports.userCounts = userCounts;

@@ -51,7 +51,7 @@ class HomePage extends React.Component {
       <Grid>
         <Col sm={4} lg={3} className="">
           <div className="dashboard dashboard-left">
-            <UserInfo userinfo={this.props.userinfo} squeakCount={this.props.squeakCount} />
+            <UserInfo userinfo={this.props.userinfo} counts={this.props.counts} />
             <h3>BOTTOM NAV</h3>
           </div>
         </Col>
