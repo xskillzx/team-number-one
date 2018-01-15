@@ -46,7 +46,7 @@ nodemon server/index.js
 
 ## Roadmap
 
-View the project roadmap [here](https://docs.google.com/document/d/1guhpmwdFdCKNuO1xrmuBcWwPtQhzMgHyWmp6ZKyH_3A/)
+View the project roadmap [here](https://docs.google.com/document/d/1guhpmwdFdCKNuO1xrmuBcWwPtQhzMgHyWmp6ZKyH_3A/).
 
 
 ## Contributing
