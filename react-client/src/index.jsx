@@ -52,8 +52,8 @@ class App extends React.Component {
           userpic={this.state.userinfo[0].profile_img_url}
         />
         <Switch>
-          <Route exact path="/" render={props => (<HomePage userinfo={this.state.userinfo}/>)}/>
-          <Route path="/search" render={props => (<SearchPage {...props.location}/>)}/>
+          <Route exact path="/" render={props => (<HomePage userinfo={this.state.userinfo} />)}/>
+          <Route path="/search" render={props => (<SearchPage userinfo={this.state.userinfo} {...props.location}/>)}/>
           <Route path="/login" render={props => (<span>Login Page</span>)}/>
           <Route path="/:username" render={props => (<UserPage username={props.match.params.username}/>)}/>
         </Switch>
