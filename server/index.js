@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 const db = require('../database-mysql');
 const cors = require('cors');
 const path = require('path');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 let app = express();
 
@@ -36,7 +38,7 @@ app.get('/api/fulluserinfo/:username', (req, res) => {
   db.fullUserInfo(req.params.username, (err, results) => {
     err ? res.send(err) : res.send(results);
   })
-});;
+});
 
 app.get('/api/search', (req, res) => {
   // TODO: receive somehow loggedUserId to be able to tell if the users are being followed or not by this user
@@ -74,15 +76,28 @@ app.put('/api/unfollow', (req, res) => {
   });
 });
 
-app.post('/api/sign-in', (req, res) => {
-  console.log(req)
-  res.end();
-})
-
 app.post('/api/sign-up', (req, res) => {
-  console.log(req);
-  res.end();
-})
+  bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
+    db.createUser(req.body.username, hash, (err, results) => {
+      res.status(201).send('Sign up successful');
+    });
+  });
+});
+
+app.post('/api/sign-in', (req, res) => {
+  db.logIn(req.body.username, (err, results) => {
+    bcrypt.compare(req.body.password, results[0].hw, function(err, resCrypt) {
+      if (resCrypt === true) {
+        db.fullUserInfo(req.body.username, (err, resUserInfo) => {
+          res.status(303).send(resUserInfo);
+        });
+      }
+      if (resCrypt === false) {
+        res.status(401).end();
+      }
+    });
+  });
+});
 
 app.get('*', function response(req, res) {
   res.sendFile(path.join(__dirname, '..', 'react-client', 'dist', 'index.html'));
