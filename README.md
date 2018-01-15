@@ -44,7 +44,7 @@ npm run dev:react
 nodemon server/index.js
 ```
 
-### Roadmap
+## Roadmap
 
 View the project roadmap [here](https://docs.google.com/document/d/1guhpmwdFdCKNuO1xrmuBcWwPtQhzMgHyWmp6ZKyH_3A/)
 
