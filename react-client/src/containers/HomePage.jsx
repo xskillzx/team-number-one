@@ -13,13 +13,11 @@ class HomePage extends React.Component {
     this.state = {
       writePostValue: '',
       squeaks: [],
-      topfollowed: [{}]
     };
   }
 
   componentDidMount() {
     this.getAllSqueaks();
-    this.getTopFollowed();
   }
 
   getAllSqueaks(id) {
@@ -30,18 +28,6 @@ class HomePage extends React.Component {
     }
     $.ajax(settings).done(data => {
       this.setState({squeaks: data});
-    });
-  }
-
-  getTopFollowed() {
-    let settings = {
-      url: '/api/topfollowed',
-      method: 'GET',
-      contentType: 'application/json'
-    }
-    $.ajax(settings).done(data => {
-      console.log(data);
-      this.setState({ topfollowed: data });
     });
   }
 
@@ -81,7 +67,7 @@ class HomePage extends React.Component {
         </Col>
         <Col lg={3} mdHidden smHidden xsHidden className="">
           <div className="dashboard dashboard-right">
-            <WhoToFollow top={this.state.topfollowed}/>
+            <WhoToFollow />
             <h3>BOTTOM NAV</h3>
           </div>
         </Col>

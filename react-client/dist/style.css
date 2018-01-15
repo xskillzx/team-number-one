@@ -18,12 +18,22 @@ body {
 	background-image: linear-gradient(to bottom, #FBCD4B 0%, #282623 100%);
 	background-repeat: no-repeat;
 	background-size: 100%;
+	color: #282623;
 	height: 100vh;
 	padding-top: 65px;
 	text-align: center;
 }
 
+a {
+	color: #88A550;
+}
+
+a:visited {
+	color: #88A550;
+}
+
 a:hover {
+	color: #A3A599;
 	text-decoration: none;
 }
 
@@ -219,7 +229,7 @@ a.navbar-brand,
 
 .panel-heading.whotofollow-header {
 	background-color: #282623;
-	color: #88A550;
+	color: #FBCD4B;
 }
 
 .user-page-banner {
@@ -253,4 +263,25 @@ a.navbar-brand,
 
 .nav-tabs>li>a {
 	color: #88A550;
+}
+
+.div.whotofollow-panel.panel.panel-default {
+
+}
+
+.carousel-pics {
+	height: 350px;
+	width: 253px;
+}
+
+.carousel-indicators {
+	bottom: 0;
+}
+
+.carousel-caption {
+	padding: 0 0 5px 0;
+}
+
+.carousel-bio {
+	font-size: 12px;
 }
