@@ -20,6 +20,12 @@ app.get('/api/userinfo/:id/squeaks/all', (req, res) => {
   });
 });
 
+app.get('/api/userinfo/:id/squeaks/count', (req, res) => {
+  db.userSqueaksCount(Number(req.params.id), (err, results) => {
+    err ? res.send(err) : res.send(results);
+  });
+});
+
 app.get('/api/userinfo/:id', (req, res) => {
   db.userInfo(Number(req.params.id), (err, results) => {
 		err ? res.send(err) : res.send(results);

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Panel, Image } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const UserInfo = function(props) {
 	return (
@@ -21,7 +22,7 @@ const UserInfo = function(props) {
 			    <span className="userinfo-statlabel">Followers</span>
 			    <div>
 				    <span className="userinfo-statvalue">
-				      <a href="#" className="userinfo-statvalue-link">123</a>
+				      <Link to={'/' + props.userinfo[0].username} className="userinfo-statvalue-link">{props.squeakCount}</Link>
 				    </span>
 				    <span className="userinfo-statvalue">
 				    <a href="#" className="userinfo-statvalue-link">456</a>

@@ -2,6 +2,7 @@ import React from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
 import UserList from '../components/UserList.jsx';
+import UserInfo from '../components/UserInfo.jsx';
 
 class SearchPage extends React.Component {
   constructor(props) {
@@ -53,7 +54,7 @@ class SearchPage extends React.Component {
   render() {
     return (
       <Grid>
-        <Col xsHidden smHidden md={4} className="show-box">User Info Comp</Col>
+        <Col xsHidden smHidden md={4} ><UserInfo squeakCount={this.props.squeakCount} userinfo={this.props.userinfo} /></Col>
         <Col xs={12} md={8}>
           <UserList users={this.state.users} followHandler={this.followHandler.bind(this)} unfollowHandler={this.unfollowHandler.bind(this)}/>
         </Col>

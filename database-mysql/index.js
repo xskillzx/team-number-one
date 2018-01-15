@@ -40,6 +40,12 @@ let userSqueaks = function(id, cb) {
   });
 }
 
+let userSqueaksCount = function(id, cb) {
+  connection.query(`SELECT COUNT (text) FROM squeaks WHERE user_id = ${id}`, (err, results) => {
+    err ? cb(err) : cb(null, results);
+  });
+}
+
 let userFollowers = function(id, cb) {
   connection.query(`SELECT users.* FROM users, follows WHERE users.id = follows.follower_id AND follows.followed_id = ${id}`, (err, results) => {
     err ? cb(err) : cb(null, results);
@@ -116,3 +122,4 @@ module.exports.followUser = followUser;
 module.exports.unfollowUser = unfollowUser;
 module.exports.topFollowed = topFollowed;
 module.exports.fullUserInfo = fullUserInfo;
+module.exports.userSqueaksCount = userSqueaksCount;
