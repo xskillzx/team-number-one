@@ -51,7 +51,8 @@ class HomePage extends React.Component {
       <Grid>
         <Col sm={4} lg={3} className="">
           <div className="dashboard dashboard-left">
-            <UserInfo userinfo={this.props.userinfo}/>
+            <UserInfo userinfo={this.props.userinfo} counts={this.props.counts} />
+            <h3>BOTTOM NAV</h3>
           </div>
         </Col>
         <Col sm={8} lg={6} className="squeakfeed">
@@ -68,7 +69,6 @@ class HomePage extends React.Component {
         <Col lg={3} mdHidden smHidden xsHidden className="">
           <div className="dashboard dashboard-right">
             <WhoToFollow />
-            <h3>BOTTOM NAV</h3>
           </div>
         </Col>
       </Grid>

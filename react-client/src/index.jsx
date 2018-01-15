@@ -12,7 +12,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       userinfo: [{}],
-      inputValue: ''
+      inputValue: '',
+      counts: undefined
     };
   }
 
@@ -24,6 +25,11 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    this.getUserInfo();
+    this.getCounts();
+  }
+
+  getUserInfo(id) {
     let settings = {
       url: '/api/userinfo/1',
       method: 'GET',
@@ -32,6 +38,18 @@ class App extends React.Component {
 
     $.ajax(settings).done(data => {
       this.setState({userinfo: data});
+    });
+  }
+
+  getCounts(id) {
+    let settings = {
+      url: '/api/userinfo/1/counts',
+      method: 'GET',
+      contentType: 'application/json'
+    }
+    $.ajax(settings).done(data => {
+      this.setState({counts: data});
+      console.log(this.state.counts);
     });
   }
 
@@ -52,8 +70,8 @@ class App extends React.Component {
           userpic={this.state.userinfo[0].profile_img_url}
         />
         <Switch>
-          <Route exact path="/" render={props => (<HomePage userinfo={this.state.userinfo} />)}/>
-          <Route path="/search" render={props => (<SearchPage userinfo={this.state.userinfo} {...props.location}/>)}/>
+          <Route exact path="/" render={props => (<HomePage counts={this.state.counts} userinfo={this.state.userinfo} />)}/>
+          <Route path="/search" render={props => (<SearchPage userinfo={this.state.userinfo} counts={this.state.counts} {...props.location}/>)}/>
           <Route path="/login" render={props => (<span>Login Page</span>)}/>
           <Route path="/:username" render={props => (<UserPage username={props.match.params.username}/>)}/>
         </Switch>
