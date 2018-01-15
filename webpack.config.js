@@ -20,9 +20,16 @@ module.exports = {
       },
       {
          test: /\.(jpg|jpeg|gif|png|ico)$/,
-         exclude: /node_modules/,
+         include: SRC_DIR,
          loader:'file-loader?name=img/[path][name].[ext]&context=./app/images'
+      },
+      {
+         test: /\.mp3$/,
+         loader: 'file',
+         query: {
+            name: 'static/media/[name].[hash:8].[ext]'
+         }
       }
     ]
-  },
+  }
 };

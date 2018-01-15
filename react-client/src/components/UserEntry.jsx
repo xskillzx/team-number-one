@@ -5,16 +5,16 @@ import { Link } from 'react-router-dom';
 const UserEntry = ({ id, username, display_name, bio_text, profile_img_url, is_followed, followHandler, unfollowHandler, showButton }) => (
   <Col xs={4}>
     <Panel>
-      <Panel.Body>
+      <Panel.Body className="user-list-entry">
       <Image className="user-entry-image" src={profile_img_url} circle/>
+        <div className="user-entry-info">
+          <Link to={'/' + username}>@{username}</Link>
+          <p>{bio_text}</p>
+          {showButton ? 
+            is_followed ? <Button bsStyle="primary" onClick={e => unfollowHandler(id)}>Unfollow</Button> : <Button bsStyle="primary" onClick={e => followHandler(id)}>Follow</Button>
+            : null}
+        </div>
       </Panel.Body>
-      <Panel.Footer className="user-footer">
-        <Link to={'/' + username}>@{username}</Link>
-        <p>{bio_text}</p>
-        {showButton ? 
-          is_followed ? <Button bsStyle="primary" onClick={e => unfollowHandler(id)}>Unfollow</Button> : <Button bsStyle="primary" onClick={e => followHandler(id)}>Follow</Button>
-          : null}
-      </Panel.Footer>
     </Panel>
   </Col>
 );

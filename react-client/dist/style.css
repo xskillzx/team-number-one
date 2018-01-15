@@ -57,8 +57,8 @@ input:focus {
 }
 
 .user-entry-image {
-	width: 100px;
-	height: 100px;
+	width: 70%;
+	height: 50%;
 	object-fit: cover;
 }
 
@@ -284,4 +284,48 @@ a.navbar-brand,
 
 .carousel-bio {
 	font-size: 12px;
+}
+
+img.user-entry-image.img-circle {
+	display: block;
+	margin: 0 auto;
+}
+
+.user-list-entry {
+	/* IE10+ */ 
+	background-image: -ms-linear-gradient(top, #FBCD4B 0%, #282623 100%);
+
+	/* Mozilla Firefox */ 
+	background-image: -moz-linear-gradient(top, #FBCD4B 0%, #282623 100%);
+
+	/* Opera */ 
+	background-image: -o-linear-gradient(top, #FBCD4B 0%, #282623 100%);
+
+	/* Webkit (Safari/Chrome 10) */ 
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #FBCD4B), color-stop(100, #282623));
+
+	/* Webkit (Chrome 11+) */ 
+	background-image: -webkit-linear-gradient(top, #FBCD4B 0%, #282623 100%);
+
+	/* W3C Markup */ 
+	background-image: linear-gradient(to bottom, #FBCD4B 0%, #282623 100%);
+	color: #A3A599;
+	height: 250px;
+	min-height: 150px;
+	padding: 10px 10px;
+	position: relative;
+	text-shadow: 4px 4px 2px #282623;
+}
+
+.user-entry-info {
+	bottom: 15px;
+	left: 5%;
+	position: absolute;
+	right: 5%;
+}
+
+.btn-primary {
+	background-color: #88A550;
+	border-color: #A3A599;
+	width: 85px;
 }
