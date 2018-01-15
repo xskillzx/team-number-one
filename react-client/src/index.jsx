@@ -40,9 +40,9 @@ class App extends React.Component {
   componentDidMount() {
   }
 
-  getCounts(id) {
+  getCounts(id = 1) {
     let settings = {
-      url: '/api/userinfo/1/counts',
+      url: `/api/userinfo/${id}/counts`,
       method: 'GET',
       contentType: 'application/json'
     }
@@ -67,7 +67,7 @@ class App extends React.Component {
       .then(response => {
         console.log(response);
         if (response.status === 200) {
-          this.getCounts();
+          this.getCounts(response.data.id);
           this.setState({loggedIn: 1, userinfo: [response.data]}, () => {
             this.props.history.push('/');
           });
@@ -113,14 +113,14 @@ class App extends React.Component {
           {/* <Route exact path="/" render={props => (<HomePage userinfo={this.state.userinfo} />)}/> */}
           <Route exact path="/" render={props => (
             this.state.loggedIn ? (
-              <HomePage userinfo={this.state.userinfo} />
+              <HomePage userinfo={this.state.userinfo} counts={this.state.counts}/>
             ) : (
               <Redirect to="/login"/>
             )
           )}/>
           <Route path="/search" render={props => (<SearchPage {...props.location}/>)}/>
           <Route path="/login" render={props => (<LoginPage signIn ={this.signIn.bind(this)} signUp={this.signUp.bind(this)} userinfo={this.state.userinfo} loggedIn={this.state.loggedIn}/>)}/>
-          <Route path="/:username" render={props => (<HomePage username={props.match.params.username}/>)}/>
+          <Route path="/:username" render={props => (<UserPage username={props.match.params.username}/>)}/>
         </Switch>
       </div>
     );
