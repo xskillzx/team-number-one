@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Switch, Route, withRouter } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, withRouter, Redirect } from 'react-router-dom';
 import NavBar from './components/NavBar.jsx';
 import SearchPage from './containers/SearchPage.jsx';
 import HomePage from './containers/HomePage.jsx';
 import UserPage from './containers/UserPage.jsx';
+import LoginPage from './containers/LoginPage.jsx';
 import $ from 'jquery';
+import axios from 'axios';
 
 class App extends React.Component {
   constructor(props) {
@@ -13,7 +15,18 @@ class App extends React.Component {
     this.state = {
       userinfo: [{}],
       inputValue: '',
-      counts: undefined
+      counts: undefined,
+      loggedIn: 0,
+      squeaks: [{
+        username: 'Moisays',
+        displayName: 'MoisesM',
+        text: 'things are awesome'
+      },
+      {
+        username: 'FelIs',
+        displayName: 'Feli Catania',
+        text: 'coding is cool I guess'
+      }]
     };
   }
 
@@ -25,36 +38,61 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.getUserInfo();
-    this.getCounts();
   }
 
-  getUserInfo(id) {
+  getCounts(id = 1) {
     let settings = {
-      url: '/api/userinfo/1',
-      method: 'GET',
-      contentType: "application/json",
-    }
-
-    $.ajax(settings).done(data => {
-      this.setState({userinfo: data});
-    });
-  }
-
-  getCounts(id) {
-    let settings = {
-      url: '/api/userinfo/1/counts',
+      url: `/api/userinfo/${id}/counts`,
       method: 'GET',
       contentType: 'application/json'
     }
     $.ajax(settings).done(data => {
       this.setState({counts: data});
-      console.log(this.state.counts);
     });
   }
 
   onInputChangeHandler(e) {
     this.setState({inputValue: e.target.value});
+  }
+
+  
+  signIn(username, password) {
+    //if successful
+    let signInInfo = {
+      "username": username,
+      "password": password
+    };
+    axios.post('/api/sign-in', signInInfo)
+      .then(response => {
+        if (response.status === 200) {
+          this.getCounts(response.data.id);
+          this.setState({loggedIn: 1, userinfo: [response.data]}, () => {
+            this.props.history.push('/');
+          });
+        }
+        if (response.status === 401) {
+          window.alert('Login failed');
+        }
+      })
+      .catch(e => console.error(e));
+  }
+
+  signUp(username, password) {
+    let signUpInfo = {
+      "username": username,
+      "password": password
+    };
+    axios.post('/api/sign-up', signUpInfo)
+      .then(response => {
+        console.log(response);
+        if (response.status === 201) {
+          window.alert('Sign up successful');
+        }
+        if (response.status === 400) {
+          window.alert('Username is taken');
+        }
+      })
+      .catch(e => console.error(e));
   }
 
   render() {
@@ -70,15 +108,23 @@ class App extends React.Component {
           userpic={this.state.userinfo[0].profile_img_url}
         />
         <Switch>
-          <Route exact path="/" render={props => (<HomePage counts={this.state.counts} userinfo={this.state.userinfo} />)}/>
-          <Route path="/search" render={props => (<SearchPage userinfo={this.state.userinfo} counts={this.state.counts} {...props.location}/>)}/>
-          <Route path="/login" render={props => (<span>Login Page</span>)}/>
+          {/* <Route exact path="/" render={props => (<HomePage userinfo={this.state.userinfo} />)}/> */}
+          <Route exact path="/" render={props => (
+            this.state.loggedIn ? (
+              <HomePage userinfo={this.state.userinfo} counts={this.state.counts}/>
+            ) : (
+              <Redirect to="/login"/>
+            )
+          )}/>
+          <Route path="/search" render={props => (<SearchPage {...props.location} userinfo={this.state.userinfo} counts={this.state.counts}/>)}/>
+          <Route path="/login" render={props => (<LoginPage signIn ={this.signIn.bind(this)} signUp={this.signUp.bind(this)} userinfo={this.state.userinfo} loggedIn={this.state.loggedIn}/>)}/>
           <Route path="/:username" render={props => (<UserPage username={props.match.params.username}/>)}/>
         </Switch>
       </div>
     );
   }
 }
+
 
 App = withRouter(App);
 
@@ -87,3 +133,4 @@ ReactDOM.render(
     <App />
   </BrowserRouter>, document.getElementById('app')
 );
+

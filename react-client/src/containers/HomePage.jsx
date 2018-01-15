@@ -33,7 +33,7 @@ class HomePage extends React.Component {
 
   writePostHandler() {
     axios.post('/api/writepost', {
-      userId: 1, // TODO: Fix when login feature is implemented
+      userId: this.props.userinfo[0].id,
       text: this.state.writePostValue
     }).then(response => {
       this.getAllSqueaks();

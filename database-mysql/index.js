@@ -23,13 +23,13 @@ let writePost = function(squeak, cb) {
 };
 
 let userInfo = function(id, cb) {
-	connection.query(`SELECT * FROM users WHERE id = ${id}`, (err, results) => {
-		err ? cb(err) : cb(null, results);
-	});
+  connection.query(`SELECT id, username, display_name, bio_text, profile_img_url, banner_img_url FROM users WHERE id = ${id}`, (err, results) => {
+    err ? cb(err) : cb(null, results);
+  });
 };
 
 let userInfoByUsername = function(username, cb) {
-	connection.query(`SELECT * FROM users WHERE username = '${username}'`, (err, results) => {
+	connection.query(`SELECT id, username, display_name, bio_text, profile_img_url, banner_img_url FROM users WHERE username = '${username}'`, (err, results) => {
 		err ? cb(err) : cb(null, results);
 	});
 };
@@ -46,10 +46,10 @@ let userCounts = function(id, cb) {
   connection.query(`SELECT COUNT (text) FROM squeaks WHERE user_id = ${id}`, (err, results) => {
     if (err) cb(err);
     finalResults.squeakCount = results[0]['COUNT (text)'];
-    userFollowers(1, (err, results) => {
+    userFollowers(id, (err, results) => {
       if (err) return cb(err);
       finalResults.followers = results.length;
-      userFollowing(1, (err, results) => {
+      userFollowing(id, (err, results) => {
         if (err) return cb(err);
         finalResults.following = results.length;
         cb(null, finalResults);
@@ -100,6 +100,28 @@ let allSqueaks = function(id, cb) {
                     FROM squeaks INNER JOIN users 
                     WHERE squeaks.user_id = users.id
                     ORDER BY squeaks.created_at DESC`, (err, results) => {
+      err ? cb(err) : cb(null, results);
+    });
+};
+
+let checkUserExists = function(username, cb) {
+  connection.query(`SELECT count(*) FROM users WHERE username='${username}'`, (err, results) => {
+    err ? cb(err) : cb(null, results);
+  });
+};
+
+let createUser = function(username, hw, cb) {
+  let sampleBio = 'New squeaker!';
+  let sampleProfilePicture = 'https://i.pinimg.com/736x/08/61/b7/0861b76ad6e3b156c2b9d61feb6af864--facebook-profile-profile-pictures.jpg';
+  let sampleBannerImage = 'https://blog.fab.com/wp-content/uploads/2016/02/cheese-long-blog-banner.jpg';
+  connection.query(`INSERT INTO users (username, hw, display_name, bio_text, profile_img_url, banner_img_url) 
+  VALUES ('${username}', '${hw}', '${username}', '${sampleBio}', '${sampleProfilePicture}', '${sampleBannerImage}')`, (err, resInsert) => {
+    err ? cb(err) : cb(null, resInsert);
+  });
+};
+
+let logIn = function(username, cb) {
+  connection.query(`SELECT username, hw FROM users WHERE username = '${username}'`, (err, results) => {
     err ? cb(err) : cb(null, results);
   });
 };
@@ -135,3 +157,6 @@ module.exports.unfollowUser = unfollowUser;
 module.exports.topFollowed = topFollowed;
 module.exports.fullUserInfo = fullUserInfo;
 module.exports.userCounts = userCounts;
+module.exports.createUser = createUser;
+module.exports.logIn = logIn;
+module.exports.checkUserExists = checkUserExists;
