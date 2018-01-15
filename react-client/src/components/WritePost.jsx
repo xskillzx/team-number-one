@@ -10,6 +10,7 @@ const WritePost = (props) => (
         type="text"
         name="name"
         placeholder="Share a Squeak to the world!"
+        maxLength="70"
         onChange={props.onPostInputChangeHandler}
         onKeyPress={e => {
           if (e.key === 'Enter') {

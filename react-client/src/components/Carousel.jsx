@@ -1,5 +1,5 @@
 import React from 'react';
-import { Carousel } from 'react-bootstrap';
+import { Carousel, Image } from 'react-bootstrap';
 import $ from 'jquery';
 
 class FollowCarousel extends React.Component {
@@ -59,13 +59,16 @@ class FollowCarousel extends React.Component {
 				activeIndex={this.state.index}
 				direction={this.state.direction}
 				onSelect={this.handleSelect}
+				className="carousel-pics"
 			>
 			{ this.state.topFollowed.map(user => {
 				  return (
 						<Carousel.Item key={user.id}>
-							<img className="carousel-pics" src={user.profile_img_url} />
+						  <div className="carousel-pics-container">
+								<Image className="carousel-pics" src={user.profile_img_url} />
+							</div>
 							<Carousel.Caption>
-								<h3>@{user.username}</h3>
+								<h4>@{user.username}</h4>
 								<p>{user.bio_text}</p>
 							</Carousel.Caption>
 						</Carousel.Item>
