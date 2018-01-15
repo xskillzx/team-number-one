@@ -77,12 +77,29 @@ app.put('/api/unfollow', (req, res) => {
 });
 
 app.post('/api/sign-up', (req, res) => {
-  bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
-    db.createUser(req.body.username, hash, (err, results) => {
-      res.status(201).send('Sign up successful');
-    });
+  db.checkUserExists(req.body.username, (err, results) => {
+    if (results[0]['count(*)'] === 0) {
+      bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
+        db.createUser(req.body.username, hash, (err, results) => {
+          res.status(201).send('Created');
+        });
+      });
+    } else {
+      res.status(400).send('Username exists');
+    }
   });
 });
+
+app.post('/api/test', (req, res) => {
+  db.createUser(req.body.username, req.body.password, (err, results) => {
+    if (err) {
+      res.status(400).send('Fucked it up');
+    } else {
+      res.status(200).send('Created');
+    } 
+  });
+});
+
 
 app.post('/api/sign-in', (req, res) => {
   db.logIn(req.body.username, (err, results) => {

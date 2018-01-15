@@ -114,21 +114,14 @@ let createUser = function(username, hw, cb) {
   let sampleBio = 'New squeaker!';
   let sampleProfilePicture = 'https://i.pinimg.com/736x/08/61/b7/0861b76ad6e3b156c2b9d61feb6af864--facebook-profile-profile-pictures.jpg';
   let sampleBannerImage = 'https://blog.fab.com/wp-content/uploads/2016/02/cheese-long-blog-banner.jpg';
-  checkUserExists(username, (err, results) => {
-    if (err) {
-      cb(err);
-    }
-    if (results[0]['count(*)'] === 0) {
-      connection.query(`INSERT INTO users (username, hw, display_name, bio_text, profile_img_url, banner_img_url) 
-      VALUES (${username}, ${hw}, ${username}, ${sampleBio}, ${sampleProfilePicture}, ${sampleBannerImage})`, (err, resInsert) => {
-        err ? cb(err) : cb(null, resInsert);
-      });
-    }
+  connection.query(`INSERT INTO users (username, hw, display_name, bio_text, profile_img_url, banner_img_url) 
+  VALUES ('${username}', '${hw}', '${username}', '${sampleBio}', '${sampleProfilePicture}', '${sampleBannerImage}')`, (err, resInsert) => {
+    err ? cb(err) : cb(null, resInsert);
   });
 };
 
 let logIn = function(username, cb) {
-  connection.query(`SELECT username, hw FROM users WHERE username = ${username}`, (err, results) => {
+  connection.query(`SELECT username, hw FROM users WHERE username = '${username}'`, (err, results) => {
     err ? cb(err) : cb(null, results);
   });
 };
@@ -166,3 +159,4 @@ module.exports.fullUserInfo = fullUserInfo;
 module.exports.userCounts = userCounts;
 module.exports.createUser = createUser;
 module.exports.logIn = logIn;
+module.exports.checkUserExists = checkUserExists;
