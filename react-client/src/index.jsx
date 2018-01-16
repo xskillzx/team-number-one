@@ -70,11 +70,10 @@ class App extends React.Component {
             this.props.history.push('/');
           });
         }
-        if (response.status === 401) {
-          window.alert('Login failed');
-        }
       })
-      .catch(e => console.error(e));
+      .catch(e => {
+        window.alert('Wrong username or password');
+      });
   }
 
   signUp(username, password) {
