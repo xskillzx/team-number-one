@@ -91,16 +91,20 @@ app.post('/api/sign-up', (req, res) => {
 
 app.post('/api/sign-in', (req, res) => {
   db.logIn(req.body.username, (err, results) => {
-    bcrypt.compare(req.body.password, results[0].hw, function(err, resCrypt) {
-      if (resCrypt === true) {
-        db.fullUserInfo(req.body.username, (err, resUserInfo) => {
-          res.status(200).send(resUserInfo);
-        });
-      }
-      if (resCrypt === false) {
-        res.status(401).end();
-      }
-    });
+    if (results.length > 0) {
+      bcrypt.compare(req.body.password, results[0].hw, function(err, resCrypt) {
+        if (resCrypt === true) {
+          db.fullUserInfo(req.body.username, (err, resUserInfo) => {
+            res.status(200).send(resUserInfo);
+          });
+        }
+        if (resCrypt === false) {
+          res.status(401).end();
+        }
+      });
+    } else {
+      res.status(401).end();
+    }
   });
 });
 
