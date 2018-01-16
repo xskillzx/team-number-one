@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 const db = require('../database-mysql');
 const cors = require('cors');
 const path = require('path');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 let app = express();
 
@@ -36,11 +38,10 @@ app.get('/api/fulluserinfo/:username', (req, res) => {
   db.fullUserInfo(req.params.username, (err, results) => {
     err ? res.send(err) : res.send(results);
   })
-});;
+});
 
-app.get('/api/search', (req, res) => {
-  // TODO: receive somehow loggedUserId to be able to tell if the users are being followed or not by this user
-  let loggedUserId = 1; // hardcoded
+app.get('/api/:id/search', (req, res) => {
+  let loggedUserId = req.params.id;
   db.searchUsers(req.query.q, loggedUserId, (err, results) => {
     if (err) {
       res.status(500).send(err);
@@ -71,6 +72,39 @@ app.put('/api/follow', (req, res) => {
 app.put('/api/unfollow', (req, res) => {
   db.unfollowUser(req.body.follower_id, req.body.followed_id, (err, results) => {
     res.status(201).send('Unfollow successful');
+  });
+});
+
+app.post('/api/sign-up', (req, res) => {
+  db.checkUserExists(req.body.username, (err, results) => {
+    if (results[0]['count(*)'] === 0) {
+      bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
+        db.createUser(req.body.username, hash, (err, results) => {
+          res.status(201).send('Created');
+        });
+      });
+    } else {
+      res.status(400).send('Username exists');
+    }
+  });
+});
+
+app.post('/api/sign-in', (req, res) => {
+  db.logIn(req.body.username, (err, results) => {
+    if (results.length > 0) {
+      bcrypt.compare(req.body.password, results[0].hw, function(err, resCrypt) {
+        if (resCrypt === true) {
+          db.fullUserInfo(req.body.username, (err, resUserInfo) => {
+            res.status(200).send(resUserInfo);
+          });
+        }
+        if (resCrypt === false) {
+          res.status(401).end();
+        }
+      });
+    } else {
+      res.status(401).end();
+    }
   });
 });
 

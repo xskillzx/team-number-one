@@ -13,7 +13,8 @@ class SearchPage extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(`/api/search?q=${this.props.search.slice(3)}`)
+    console.log(this.props.userinfo[0].id);
+    axios.get(`/api/${this.props.userinfo[0].id}/search?q=${this.props.search.slice(3)}`)
     .then(response => this.setState({users: response.data}))
     .catch(e => console.error(e));
   }
@@ -33,8 +34,8 @@ class SearchPage extends React.Component {
     this.setState({users: dupedUsers});
   }
 
-  followHandler(userId) { // TODO: remove hardcode follower_id: 1 once authentication is enabled
-    let putObj = {"follower_id": 1, "followed_id": userId};
+  followHandler(userId) {
+    let putObj = {"follower_id": this.props.userinfo[0].id, "followed_id": userId};
     axios.put('/api/follow', putObj)
     .then(response => {
       this._toggleIsFollowed(userId);
@@ -42,8 +43,8 @@ class SearchPage extends React.Component {
     .catch(e => console.error(e));
   }
 
-  unfollowHandler(userId) { // TODO: remove hardcode follower_id: 1 once authentication is enabled
-    let putObj = {"follower_id": 1, "followed_id": userId};
+  unfollowHandler(userId) {
+    let putObj = {"follower_id": this.props.userinfo[0].id, "followed_id": userId};
     axios.put('/api/unfollow', putObj)
     .then(response => {
       this._toggleIsFollowed(userId);

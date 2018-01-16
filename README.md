@@ -1,4 +1,4 @@
-# A better twitter, squeaker
+# Squeaker, a better Twitter
 
 ## Team
 
@@ -9,25 +9,21 @@
 
 ## Table of Contents
 
-1. [Usage](#Usage)
 1. [Requirements](#requirements)
 1. [Development](#development)
     1. [Installing Dependencies](#installing-dependencies)
-    1. [Tasks](#tasks)
+    1. [Setting up Dev Environment](#setting-up-dev-environment)
 1. [Roadmap](#roadmap)
 1. [Contributing](#contributing)
+1. [Testing](#testing)
 
-## Usage
-
-> Some usage instructions
 
 ## Requirements
 
-- Node 6.4.x
-- Redis 2.6.x
-- Postgresql 9.1.x
-- etc
-- etc
+- Node
+- Nodemon
+- MySQL
+- Webpack
 
 ## Development
 
@@ -36,16 +32,28 @@
 From within the root directory:
 
 ```sh
-npm install -g bower
 npm install
-bower install
 ```
 
-### Roadmap
+### Setting up Dev Environment
 
-View the project roadmap [here](LINK_TO_DOC)
+From within the root directory:
+
+```sh
+npm run dev:react
+nodemon server/index.js
+```
+These lines will make webpack and nodemon watch on changes to restart the server and re-bundle webpack's bundle.js file.
+
+## Roadmap
+
+View the project roadmap [here](https://docs.google.com/document/d/1guhpmwdFdCKNuO1xrmuBcWwPtQhzMgHyWmp6ZKyH_3A/).
 
 
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
+
+## Testing
+
+See [TESTING.md](TESTING.md) for testing guidelines.
