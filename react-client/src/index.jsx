@@ -67,7 +67,7 @@ class App extends React.Component {
           inputValue={this.state.inputValue}
           searchHandler={this.searchHandler.bind(this)}
           onChangeHandler={this.onInputChangeHandler.bind(this)}
-          userpic={this.state.userinfo[0].profile_img_url}
+          userinfo={this.state.userinfo[0]}
         />
         <Switch>
           <Route exact path="/" render={props => (<HomePage counts={this.state.counts} userinfo={this.state.userinfo} />)}/>

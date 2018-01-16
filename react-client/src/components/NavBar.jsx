@@ -2,10 +2,12 @@ import React from 'react';
 import { Navbar, FormGroup, FormControl, Button, Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-const NavBar = ({ shouldReplace, inputValue, searchHandler, onChangeHandler, userpic }) => {
+const NavBar = ({ shouldReplace, inputValue, searchHandler, onChangeHandler, userinfo }) => {
   return (
     <Navbar fixedTop>
-      <a href="#" className="navbar-left"><Image src="pretty_logo.jpg" className="nav-logo" circle /></a>
+      <Link to="/" className="navbar-left" replace={shouldReplace}>
+        <Image src="pretty_logo.jpg" className="nav-logo" circle />
+      </Link>
       <Navbar.Header>
         <Navbar.Brand>
           <Link to="/" replace={shouldReplace}>
@@ -28,7 +30,9 @@ const NavBar = ({ shouldReplace, inputValue, searchHandler, onChangeHandler, use
           </FormGroup>
           <Button type="submit" onClick={searchHandler}>Go</Button>
         </Navbar.Form>
-        <a href="#" className="navbar-right"><Image src={userpic} className="nav-logo" circle /></a>
+        <Link to={`/${userinfo.username}`} className="navbar-right" replace={shouldReplace}>
+          <Image src={userinfo.profile_img_url} className="nav-logo" circle />
+        </Link>
       </Navbar.Collapse>
     </Navbar>
   );

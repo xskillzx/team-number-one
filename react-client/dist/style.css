@@ -209,7 +209,7 @@ a.navbar-brand,
 .nav-logo {
 	display: inline-block;
 	height: 40px;
-	margin-left: 15px;
+	margin-left: 0;
 	margin-top: 5px;
 	width: 40px;
 }
@@ -328,4 +328,8 @@ img.user-entry-image.img-circle {
 	background-color: #88A550;
 	border-color: #A3A599;
 	width: 85px;
+}
+
+.btn-primary:hover {
+	background-color: #A3A599;
 }
